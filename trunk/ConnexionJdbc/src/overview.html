@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+   <TITLE>Overview</TITLE>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<body>
+<h1>Connexion Jdbc </h1>
+<p>L objectif de ce tutoriel est montrer comment acceder à une base de données avec l'api jdbc. le tuto implémente aussi la couche dao et 
+la couche service (une classe dao ne doit pas appeler une autre classe dao, ce principe est bien utilistré dans cet exemple, c'est la classe 
+UtilisateurService qui appelle RoleDao pour charger un Role dans Utilisateur). pour exécuter ce tutoriel : 
+  :</p>
+<ul>
+  <li>créer la base de données dans mysql via le script  scriptSql/bddMysql.sql</li>
+  <li>Pour tester la couche dao, lancer les classes junit qui se trouve dans le package com.persistence.test</li>
+  <li>Pour tester la couche service, lancer les classes junit qui se trouve dans le package com.service.test</li>
+</ul>
+</body>
+</HTML>
