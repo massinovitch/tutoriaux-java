@@ -1,0 +1,1 @@
+nohup java -DdriveName="G:" -DfolderGlobal="\\Vf-np867-ope01.corp.noxiane.net\data112\edx_867112_02\cal3dhub_BD_3DCOM_pub\partage" -DfolderKdo="G:\BASE-DE-DONNEES_KDO" -DlogFile="c:/logFile.txt" -Duser="CORP\p054122" -Dmdp="MSH15MSH" -jar ConnexionLecteurDisque.jar
