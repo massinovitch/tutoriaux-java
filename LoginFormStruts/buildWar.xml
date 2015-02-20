@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+Project LoginFormStruts                                                             
+====================================================================== -->
+<project name="LoginFormStruts" default="createWar" basedir=".">
+
+	<!-- ================================= 
+	target: createWar create war archive          
+	================================= -->
+	<target name="createWar">			
+		<war destfile="LoginFormStruts.war" webxml="./WebContent/WEB-INF/web.xml">
+		  	<zipfileset dir="./WebContent"/>
+		</war>		
+	</target>				
+</project>
