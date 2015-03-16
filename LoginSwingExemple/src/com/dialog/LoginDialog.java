@@ -1,29 +1,14 @@
 package com.dialog;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import com.properties.Configuration;
 
-import java.awt.Dimension;
- 
-public class Dialog extends JDialog{
-
+public class LoginDialog extends JDialog {
+    private boolean succeeded;
 	private static final long serialVersionUID = 1L;
 	private static Configuration configuration = Configuration.getInstance();
 	JLabel nameLabel = new JLabel(configuration.getProperty("label.name"));
@@ -40,11 +25,12 @@ public class Dialog extends JDialog{
 	private GridBagConstraints gbc_3;
 	private GridBagConstraints gbc_4;
  
-	public Dialog(JFrame parent, boolean modal) {
+	public LoginDialog(JFrame parent, boolean modal) {
 		super(parent, configuration.getProperty("title.login"), true);
+		succeeded = false;
 		setMinimumSize(new Dimension(300, 150));
 		setupUI(); 
-		setUpListeners();
+		setUpListeners(parent);
 		pack();
         setResizable(false);
         setLocationRelativeTo(parent);
@@ -108,7 +94,7 @@ public class Dialog extends JDialog{
 		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 	}
  
-	private void setUpListeners() {
+	private void setUpListeners(JFrame parent) {
  
 		passwordField.addKeyListener(new KeyAdapter() {
  
@@ -133,6 +119,7 @@ public class Dialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				
 			}
 		});
 	}
@@ -146,8 +133,14 @@ public class Dialog extends JDialog{
 		} else if (mdp.length == 0) {
 			messageLabel.setText(configuration.getProperty("message.mdp"));
 		} else {
+			succeeded = true;
 			dispose();
 		}
 		messageLabel.setVisible(true);
 	}
+
+	public boolean isSucceeded() {
+		return succeeded;
+	}
+	
 }
