@@ -12,13 +12,25 @@
        </param-value>
     </init-param>
     <load-on-startup>2</load-on-startup>
-  </servlet>
-  
+  </servlet>  
   <servlet-mapping>
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
+ 
+  <filter>
+    <filter-name>webFilter</filter-name>
+    <filter-class>com.raistudies.util.WebFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>webFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+      
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

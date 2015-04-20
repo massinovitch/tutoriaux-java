@@ -8,7 +8,7 @@
 <title>Login Form</title>
 </head>
 <body>
-<html:form action="/Login" focus="username">
+<html:form action="/LoginPublic" focus="username">
 	Username : <html:text property="username"/><br/>
 	Password : <html:password property="password"/><br/>
 	<html:submit value="Login"/>
