@@ -16,9 +16,9 @@
     <!-- ========== Action Mapping Definitions ============================= -->
     <action-mappings>
 
-	    <action name="loginForm" path="/Login" type="com.raistudies.actions.LoginAction" scope="request" input="/Login.jsp">
-	        <forward name="failure" path="/Failure.jsp" redirect="true"/>
-	        <forward name="success" path="/Success.jsp" redirect="true"/>
+	    <action name="loginForm" path="/Login" type="com.raistudies.actions.LoginAction" scope="request" input="/public/Login.jsp">
+	        <forward name="failure" path="/public/Failure.jsp" redirect="true"/>
+	        <forward name="success" path="/private/Success.jsp" redirect="true"/>
 	    </action>
 
     </action-mappings>
