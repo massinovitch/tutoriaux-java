@@ -17,7 +17,24 @@
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
- 
+ <!-- au cas où il y a un problème d'affichage de caractères, on peut appeler ce filtre 
+  <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+        <param-name>ignore</param-name>
+        <param-value>false</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>   -->
+
   <filter>
     <filter-name>webFilter</filter-name>
     <filter-class>com.raistudies.util.WebFilter</filter-class>
