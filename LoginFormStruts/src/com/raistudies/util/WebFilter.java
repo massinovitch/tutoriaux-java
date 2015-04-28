@@ -32,7 +32,7 @@ public class WebFilter implements Filter {
 			chain.doFilter(request, response);		
 		} else { //private
 			if ( sessionAttribute == null ) {// non connecté, le redériger vers page login
-				resp.sendRedirect("Login.jsp");
+				resp.sendRedirect("pages/Login.jsp");
 			    return;
 			}  else { //connecté
 				chain.doFilter(request, response);		
