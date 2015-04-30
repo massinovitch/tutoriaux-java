@@ -1,0 +1,2189 @@
+/* Generic styles */
+body{
+	background:#FFFFFF;
+	margin:0;
+	padding:4px 10px 10px 10px;
+	text-align:left;
+}
+body *{
+	font-family:verdana, arial, sans-serif;
+	font-size:100%;
+	color:#3c4749;
+}
+a{
+	color:#3c4749;
+}
+a img{
+	border:none;
+}
+p, form, h1, h2, h3, h4, h5, h6, td{
+	margin:0;
+	font-weight:normal;
+}
+ul, ol{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+* html li{
+	vertical-align:top;
+}
+table{
+	border-collapse:collapse;
+	border:none;
+}
+.none{
+	display:none;
+}
+.sc:after{ /* Self clearing class for blocks with floating elements */
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+* html .sc{
+	height:1%;
+}
+*:first-child+html .sc{
+	min-height:1%;
+}
+
+/* Generic classes */
+.RnofLeft{
+	float:left;
+}
+.RnofRight{
+	float:right;
+}
+.RnoLeft{
+	text-align:left;
+}
+.RnoRight{
+	text-align:right;
+}
+.RnoCenter{
+	text-align:center;
+}
+.RnohList{
+	float:left;
+	margin-right:10px;
+}
+.RnoMandatory{
+	color:#FF0000;
+	font-size:110%;
+	margin:0 0 0 4px;
+}
+
+/* Page layout */
+#RnoPage{
+	margin:0 auto;
+	text-align:left;
+	font-size:70%;
+	position:relative;
+}
+#RnoPageWidthRange{
+	width:1640px;
+}
+* html #RnoPageWidthRange{
+	overflow-x:hidden;
+}
+.RnoLayout-1col #RnoBody{
+	margin:30px 0 0 0;
+}
+.RnoLayout-2col #RnoBody{
+	margin:0 0 0 197px;
+}
+
+/* Page layout HP */
+.RnoLayout-HP #RnoBody{
+	margin:0 0 0 81px;
+}
+
+/* Global Links Top */
+#RnoGlobalLinksTop{
+}
+#RnoGlobalLinksTop div{
+	width:760px;
+	overflow:hidden;
+	float:right;
+}
+#RnoGlobalLinksTop ul{
+	float:right;
+	margin:0 -13px 3px 0;
+}
+#RnoGlobalLinksTop li{
+	display:block;
+	float:left;
+	text-transform:uppercase;
+	font-weight:bold;
+	padding:0 13px 0 12px;
+	background:url(../images/globallinkstop-sep.gif) right center no-repeat;
+}
+#RnoGlobalLinksTop li a{
+	text-decoration:none;
+	color:#000;
+}
+
+/* Page header */
+#RnoBranding{
+	position:relative;
+}
+#RnoLogo{
+	position:absolute;
+	width:63px;
+	height:63px;
+}
+#RnoApplicationName{
+	border:1px solid #000;
+	margin:0 0 0 81px;
+	padding:0 0 0 12px;
+	min-height:61px;
+}
+* html #RnoApplicationName{
+	height:61px;
+}
+#RnoApplicationName img{
+	vertical-align:top;
+}
+#RnoBranding span{
+	float:right;
+	display:block;
+	margin:-31px 0 0 0;
+}
+
+/* Page header HP */
+.RnoLayout-HP #RnoApplicationName{
+	min-height:225px;
+}
+* html .RnoLayout-HP #RnoApplicationName{
+	height:225px;
+}
+.RnoLayout-HP #RnoApplicationName img{
+	margin-top:19px;
+}
+
+/* IE6 Iframe class, hierarchical menus over windows elements (select) */
+.ie6ifr{
+	position:absolute;
+	left:0;
+	top:0;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+	visibility:hidden;
+}
+
+/* Navigation Top Level 1 */
+#RnoNav1Top{
+	position:relative;
+	z-index:93;
+	padding:4px 0 0 70px;
+}
+#RnoNav1Top li{
+	display:block;
+	float:left;
+	text-transform:uppercase;
+	font-weight:bold;
+	background:url(../images/nav1top-sep.gif) right center no-repeat;
+}
+#RnoNav1Top li a{
+	display:block;
+	text-decoration:none;
+	color:#000;
+	padding:3px 12px 4px 12px;
+}
+* html #RnoNav1Top li a{
+	display:inline-block;
+}
+#RnoNav1Top li span{
+	padding-right:12px;
+	background:url(../images/submenu-arrow.gif) 100% 6px no-repeat;
+	color:#000;
+	cursor:pointer;
+	cursor:hand;
+}
+#RnoNav1Top li.on a{
+	background-color:#757a7d;
+	color:#FFF;
+}
+#RnoNav1Top li.on span{
+	color:#FFF;
+}
+/* Navigation Top Level 1 menus */
+#RnoNav1Top li ul{
+	position:absolute;
+	z-index:103;
+	visibility:hidden;
+	float:left;
+	background:#f0f0f0;
+	border:1px solid #3d464b;
+	padding:6px;
+}
+
+#RnoNav1Top li li{
+	background:none;
+	float:none;
+	text-transform:none;
+	margin:0;
+}
+* html #RnoNav1Top li li{
+	width:1240px;
+}
+#RnoNav1Top li li a,
+#RnoNav1Top li.on li a{
+	background:none;
+	color:#000;
+	font-weight:normal;
+	padding:4px 6px 4px 6px;
+}
+#RnoNav1Top li li a:hover,
+#RnoNav1Top li li.on a:hover{
+	color:#000;
+	background-color:#CCC;
+}
+#RnoNav1Top li li.on a{
+	color:#000;
+	background:none;
+	font-weight:bold;
+}
+#RnoNav1Top li li.RnoVSep{
+	border-top:1px solid #CCC;
+	margin-top:6px;
+	padding-top:6px;
+}
+
+/* Navigation Top Level 2 */
+#RnoNav2Top{
+	position:relative;
+	z-index:92;
+	background:#767a7d;
+	border-bottom:4px solid #CCC;
+	padding:3px 4px 0 4px;
+}
+#RnoNav2Top li{
+	display:block;
+	float:left;
+}
+#RnoNav2Top li a{
+	display:block;
+	text-decoration:none;
+	color:#FFF;
+	padding:3px 12px 4px 12px;
+}
+* html #RnoNav2Top li a{
+	display:inline-block;
+}
+#RnoNav2Top li span{
+	padding-right:12px;
+	background:url(../images/submenu-arrow.gif) 100% 6px no-repeat;
+	cursor:pointer;
+	cursor:hand;
+	color:#FFF;
+}
+#RnoNav2Top li.on a{
+	color:#000;
+	font-weight:bold;
+	background:#CCC;
+}
+#RnoNav2Top li.on span{
+	color:#000;
+}
+/* Navigation Top Level 2 menus */
+#RnoNav2Top li ul{
+	position:absolute;
+	z-index:102;
+	visibility:hidden;
+	float:left;
+	background:#f0f0f0;
+	border:1px solid #3d464b;
+	padding:6px;
+}
+#RnoNav2Top li li{
+	background:none;
+	float:none;
+	text-transform:none;
+	margin:0;
+}
+* html #RnoNav2Top li li{
+	width:1240px;
+}
+#RnoNav2Top li li a,
+#RnoNav2Top li li.off a,
+#RnoNav2Top li.on li a{
+	color:#000;
+	background:none;
+	font-weight:normal;
+	padding:4px 6px 4px 6px;
+}
+#RnoNav2Top li li a:hover,
+#RnoNav2Top li li.on a:hover{
+	color:#000;
+	background-color:#CCC;
+}
+#RnoNav2Top li li.on a{
+	background:none;
+	font-weight:bold;
+}
+#RnoNav2Top li li.RnoVSep{
+	border-top:1px solid #CCC;
+	margin-top:6px;
+	padding-top:6px;
+}
+
+/* Navigation Left Level 3 */
+#RnoNav3Left{
+	position:absolute;
+	padding:20px 0 10px 0;
+	background:#CCC;
+	width:179px;
+}
+* html #RnoNav3Left{
+	left:1px;
+}
+*:first-child+html #RnoNav3Left{
+	left:1px;
+}
+#RnoNav3Left a{
+	display:block;
+	text-decoration:none;
+	padding:3px 4px 3px 10px;
+}
+* html #RnoNav3Left a{
+	display:inline-block;
+	width:165px;
+}
+#RnoNav3Left .on{
+	background:#FFF;
+	font-weight:bold;
+}
+
+/* Breadcrumb */
+#RnoBreadcrumb{
+	padding:7px 0 7px 0;
+	margin:-24px 0 0 -4px;
+}
+.RnoLayout-2col #RnoBreadcrumb{
+	margin:0 0 3px -4px;
+}
+#RnoBreadcrumb li{
+	display:block;
+	float:left;
+}
+#RnoBreadcrumb a,
+#RnoBreadcrumb strong{
+	font-weight:normal;
+	margin:0 0 0 4px;
+}
+#RnoBreadcrumb a:link{
+	color:#0000FF;
+}
+#RnoBreadcrumb a:visited{
+	color:#800080;
+}
+
+#RnoMainContent{
+	background:#CCC;
+	padding:5px;
+}
+
+#RnoPageSearch{
+	float:right;
+	background:#767a7d;
+	padding:5px 8px 4px 5px;
+	margin:0 -5px 0 0;
+}
+* html #RnoPageSearch{
+	margin:0 -2px 0 0;
+}
+#RnoPageSearch .RnoBtnPgSearch{
+	background-color:#767a7d;
+}
+#RnoPageSearch li{
+	float:left;
+	padding:0 4px 0 0;
+}
+#RnoPageSearch #RnoPageSearchValue{
+	background:#FFF;
+	border:none;
+	width:110px;
+	padding:2px 0 0 4px;
+	min-height:18px;
+	margin:0;
+	font-size:100%;
+}
+* html #RnoPageSearch #RnoPageSearchValue{
+	margin:-1px 0 0 0;
+	height:15px;
+}
+*:first-child+html #RnoPageSearch #RnoPageSearchValue{
+	margin:-1px 0 0 0;
+	min-height:15px;
+}
+
+#RnoPageTitle{
+	font-weight:bold;
+	font-size:150%;
+	color:#000;
+	margin:0 0 0 -5px;
+	padding:0 0 10px 9px;
+}
+* html #RnoPageTitle{
+	height:1%;
+}
+#RnoPageTitle a{
+	position:relative;
+	z-index:0;
+	left:-9px;
+	float:left;
+}
+* html #RnoPageTitle a{
+	margin:0 -3px 0 0;
+}
+
+#RnoWorkspace{
+	background-color:#FFF;
+	padding:1px 9px 9px 9px;
+}
+
+.RnoListI{
+	position:relative;
+	left:-10px;
+}
+.RnoListI li{
+	display:block;
+	float:left;
+	padding:0 10px 0 10px;
+}
+
+/* Button elements */
+head:first-child+body .RnoBtn{
+	position:relative;
+}
+*:first-child+body .RnoBtn{
+	position:relative;
+}
+.RnoBtn li{
+	display:block;
+	float:left;
+	padding:0 4px 0 3px;
+}
+ul.RnoSep li,
+li.RnoSep{
+	background:url(../images/pg-buttons-sep.gif) right center no-repeat;
+}
+.RnoSep li.RnoNoSep{
+	background:none;
+}
+.RnoBtn li li{
+	float:none;
+	padding:0;
+}
+.RnoBtn a{
+	color:#3C4749;
+	display:block;
+	padding:5px 6px 5px 7px;
+	text-decoration:none;
+}
+.RnoDataTable td .RnoBtn a:link{
+	color:#3C4749;
+}
+.RnoDataTable td .RnoBtn a:visited{
+	color:#3C4749;
+}
+* html .RnoBtn a{
+	display:inline-block;
+}
+.RnoBtn a:hover,
+.RnoBtn a.on{
+	background-color:#f0f0f0;
+}
+.RnoBtn a span{
+	padding-right:12px;
+	background:url(../images/submenu-arrow.gif) 100% 6px no-repeat;
+	cursor:pointer;
+	cursor:hand;
+}
+.RnoBtnMinWidth a{
+	text-align:center;
+	width:70px;
+}
+.RnoBtn li ul{
+	position:absolute;
+	z-index:101;
+	left:0;
+	visibility:hidden;
+	background:#f0f0f0;
+	border:1px solid #3d464b;
+	padding:6px;
+}
+.RnoBtn li li{
+	float:none;
+	background:none;
+	margin:0;
+	padding:0;
+}
+* html .RnoBtn li li{
+	width:1240px;
+}
+.RnoBtn li li a{
+	color:#000;
+	padding:3px 6px 4px 6px;
+}
+.RnoBtn li li a:hover,
+.RnoBtn li li.on a:hover{
+	color:#000;
+	background-color:#CCC;
+}
+.RnoBtn li li.on a{
+	font-weight:bold;
+}
+.RnoBtn li li.RnoVSep{
+	border-top:1px solid #CCC;
+	margin-top:6px;
+	padding-top:6px;
+}
+
+.RnoBtn .RnoBtnBorder,
+.RnoBtn .RnoBtnBorder:hover{
+	background-color:#EAEAEA;
+	border:1px solid #3C4749;
+	border-width:0 1px 1px 0;
+	padding:3px 6px 4px 6px;
+}
+.RnoBtn .RnoBtnHighlight,
+.RnoBtn .RnoBtnHighlight:hover{
+	background-color:#ffad00;
+	font-weight:bold;
+}
+.RnoBtn .RnoBtnPicto{
+	padding-left:22px;
+	background-position:4px 4px;
+	background-repeat:no-repeat;
+}
+.RnoBtn .RnoBtnNoText,
+.RnoBtn .RnoBtnNoText:hover{
+	padding:0 4px 5px 10px;
+	background-color:#f0f0f0;
+	background-position:1px 1px;
+	background-repeat:no-repeat;
+}
+.RnoBtn .RnoBtnNoText span{
+	background-position:100% 8px;
+}
+/* Button elements illustraitions */
+.RnoBtnPgSearch{
+	background-image:url(../images/lookupicon_white.gif);
+}
+.RnoBtnUp{
+	background-image:url(../images/previousnextresult_upicon.gif);
+}
+.RnoBtnDown{
+	background-image:url(../images/previousnextresult_downicon.gif);
+}
+.RnoBtnLeft{
+	background-image:url(../images/previousnext_lefticon.gif);
+}
+.RnoBtnRight{
+	background-image:url(../images/previousnext_righticon.gif);
+}
+.RnoBtnDup{
+	background-image:url(../images/duplicateicon.gif);
+}
+.RnoBtnDel{
+	background-image:url(../images/deleteicon.gif);
+}
+.RnoBtnAdd{
+	background-image:url(../images/addicon.gif);
+}
+.RnoBtnSearch{
+	background-image:url(../images/lookupicon.gif);
+}
+.RnoBtnFilter{
+	background-image:url(../images/filtericon.gif);
+}
+.RnoBtnDeleteFilter{
+	background-image:url(../images/filterdeleteicon.gif);
+}
+.RnoBtnOk{
+	background-image:url(../images/bt-ok.gif);
+}
+.RnoBtnInfo{
+	background-image:url(../images/informationicon_status.gif);
+}
+
+
+#RnoPageLevelButtonsTop{
+	z-index:91;
+	padding:6px 0 8px 0;
+}
+#RnoPageLevelButtonsBottom{
+	z-index:89;
+	padding:6px 0 0 0;
+}
+#RnoPageLevelButtonsSteps{
+	z-index:89;
+	padding:10px 0 12px 0;
+}
+
+#RnoHeaderData{
+	padding:4px 0 4px 0;
+	margin:0 0 4px 0;
+	border-bottom:1px solid #FFF;
+}
+#RnoHeaderData td.RnoHeaderDataCol{
+	background:url(../images/bg-cell-v.gif) right top repeat-y;
+	padding:2px 8px 4px 12px;
+	vertical-align:top;
+}
+#RnoHeaderData td.RnoHeaderDataLast{
+	background:none;
+}
+#RnoHeaderData .RnoFieldsValuesTable td,
+#RnoHeaderData .RnoFieldsValuesTable th{
+	padding-top:0;
+	padding-bottom:4px;
+}
+
+/* Dynamic Tabs */
+#RnoTabs{
+	position:relative;
+	z-index:90;
+	border-bottom:9px solid #FFF;
+}
+.RnoTabsBorders{
+	background:#FFF;
+}
+.RnoTabsBorders p{
+	position:absolute;
+	width:100%;
+	z-index:89;
+	left:0;
+	bottom:0;
+	margin-top:-1px;
+	height:1px;
+	overflow:hidden;
+	background-color:#767a7d;
+}
+#RnoTabs li{
+	display:block;
+	float:left;
+	margin:3px 3px 0 0;
+}
+.RnoTabsBorders li{
+	position:relative;
+	z-index:90;
+	border:1px solid #767a7d;
+}
+#RnoTabs li a,
+#RnoTabs li.off a{
+	display:block;
+	color:#FFF;
+	background-color:#767a7d;
+	padding:8px 15px 8px 15px;
+	text-decoration:none;
+	white-space:nowrap;
+}
+* html #RnoTabs li a{
+	display:inline-block;
+	float:left;
+}
+#RnoTabs li span{
+	color:#FFF;
+	padding-right:12px;
+	background:url(../images/submenu-arrow.gif) 100% 6px no-repeat;
+	cursor:pointer;
+	cursor:hand;
+}
+#RnoTabs li.on{
+	border-bottom-color:#FFF;
+}
+#RnoTabs li.on a{
+	font-weight:bold;
+	color:#000;
+	background-color:#FFF;
+	padding-top:5px;
+	padding-bottom:11px;
+}
+#RnoTabs li.on span{
+	color:#000;
+}
+/* Dynamic Tabs menus (last element) */
+#RnoTabs li ul{
+	position:absolute;
+	z-index:100;
+	left:0;
+	visibility:hidden;
+	background:#f0f0f0;
+	border:1px solid #3d464b;
+	padding:6px;
+}
+#RnoTabs li li{
+	float:none;
+	background:none;
+	margin:0;
+	padding:0;
+}
+* html #RnoTabs li li{
+	width:1240px;
+}
+#RnoTabs li li a,
+#RnoTabs li.off li a,
+#RnoTabs li.off li.off a,
+#RnoTabs li.on li a,
+#RnoTabs li.on li.off a,
+#RnoTabs li.on li.on a{
+	background:none;
+	color:#000;
+	padding:3px 12px 4px 12px;
+	font-weight:normal;
+	white-space:normal;
+}
+#RnoTabs li li a:hover,
+#RnoTabs li li.on a:hover,
+#RnoTabs li.on li.on a:hover,
+#RnoTabs li.on li.off a:hover,
+#RnoTabs li.off li.off a:hover{
+	color:#000;
+	background-color:#CCC;
+}
+* html #RnoTabs li li a{
+	float:none;
+}
+#RnoTabs li.on li.on a{
+	font-weight:bold;
+}
+/* Dynamic Tabs Content blocks */
+.RnoTabContent{
+	display:none;
+}
+
+/* Instruction Text */
+.RnoInstructionText{
+	padding:10px 0 0 0;
+}
+* html .RnoInstructionText{
+	height:1%;
+}
+.RnoInstructionText p,
+.RnoInstructionText span{
+	display:block;
+	padding:0 10px 10px 10px;
+}
+.RnoInstructionText ul{
+	padding:0 0 10px 0;
+}
+.RnoInstructionText li{
+	padding:0 0 8px 0;
+}
+.RnoInstructionText * a:link{
+	color:#0000FF;
+}
+.RnoInstructionText * a:visited{
+	color:#800080;
+}
+
+/* Section blocks */
+.RnoSection,
+.RnoSectionFree{
+	border:1px solid #3C4749;
+	margin:18px 0 0 0;
+}
+* html .RnoSection,
+* html .RnoSectionFree{
+	height:1%;
+}
+.RnoSectionFirst{
+	margin:0;
+}
+
+.RnoTable{
+	width:auto;
+	overflow:hidden;}
+
+.RnoTable td{
+	border:1px solid #FFF;
+	border-width:2px 0 2px 0;
+	padding:4px 5px 4px 5px;
+	vertical-align:middle;
+}
+.RnoImg{
+ 	vertical-align:middle
+ }
+.RnoSectionFree{
+	border:none;
+}
+.RnoSectionTitle{
+	background:#3C4749;
+	color:#FFF;
+	font-weight:bold;
+	font-size:120%;
+	padding:5px 5px 5px 5px;
+}
+* html .RnoSectionTitle{
+	height:1%;
+}
+.RnoSectionFree .RnoSectionTitle{
+	background:none;
+	color:#3c4749;
+}
+.RnoSectionTitle span,
+.RnoSectionTitle span.RnoSectionOpen{
+	float:left;
+	height:17px;
+	width:24px;
+	display:block;
+	overflow:hidden;
+	cursor:pointer;
+	cursor:hand;
+	background:url(../images/information_showicon.gif) 0 0 no-repeat;
+}
+.RnoSectionTitle span.RnoSectionClosed{
+	background:url(../images/information_hiddenicon.gif) 0 0 no-repeat;
+}
+.RnoSectionContent{
+	padding:9px;
+	margin:0;
+}
+.RnoSectionFree .RnoSectionContent{
+	padding:10px;
+}
+.RnoSpacers p{
+	padding:3px 0 3px 0;
+}
+
+/* Group blocks */
+.RnoSubSection{
+	padding:8px 0 8px 4px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollXSmall{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 100px;
+}
+
+.RnoSubSectionScrollYSmall{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 150px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollSmall{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 200px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollMedium{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 275px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollLarge{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 350px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollXLarge{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 450px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollManuelImportModal{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 446px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollFilterMaterialsModal{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 422px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollFilterMtcModal{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 527px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollGenresFGModal{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 527px;
+}
+
+/* Group blocks */
+.RnoSubSectionScrollSearchFilter{
+	padding:8px 0 8px 4px;
+ 	overflow:auto;
+ 	height: 568px;
+}
+
+.RnoSubSection-A,
+.RnoSubSection-B{
+	float:left;
+	width:49%;
+}
+.RnoSubSection-A{
+	margin:0 1% 0 0;
+}
+.RnoSubSection-B{
+	float:right;
+}
+
+.RnoGroupColBrd{
+	border-left:1px solid #AEAEAC;
+}
+.RnoGroupColBrd .RnoFieldsValuesTable{
+	margin-left:20px;
+}
+.RnoGroupActions{
+	float:right;
+	margin:0 -8px 0 0;
+}
+.RnoGroupActions li{
+	float:left;
+	padding:0 8px 0 8px;
+}
+.RnoSubSectionTitle{
+	font-size:110%;
+	font-weight:bold;
+	border-bottom:1px solid #AEAEAC;
+	padding:0 0 3px 0;
+	margin:0 0 4px 0;
+}
+
+/* Form style table elements */
+.RnoFieldsValuesTable{
+	position:relative;
+}
+.RnoFieldsValuesTable td,
+.RnoFieldsValuesTable th{
+	font-weight:normal;
+	vertical-align:top;
+	padding:5px 0 5px 0;
+	background:none;
+}
+.RnoFieldsValuesTable th{
+	text-align:left;
+	padding-right:12px;
+}
+.RnoFieldsValuesTable th label{
+	display:block;
+	padding:0 0 0 0;
+	position:relative;
+}
+.RnoFieldsValuesTable th label span{
+	position:absolute;
+	right:-8px;
+	top:0;
+}
+* html .RnoFieldsValuesTable th label span{
+	right:3px;
+}
+.RnoFieldsValuesTable th.RnoWarning,
+.RnoFieldsValuesTable th.RnoWarning label{
+	color:#ff1b00;
+}
+.RnoFieldsValuesTable td input{
+	margin:-1px 4px 0 0;
+	float:left;
+}
+.RnoFieldsValuesTable td .RnoBtn{
+	top:-3px;
+}
+* html .RnoFieldsValuesTable td .RnoBtn{
+	margin-top:-2px;
+	padding-bottom:8px;
+}
+.RnoFieldsValuesTable .RnoRadRight{
+	position:relative;
+	padding-left:20px;
+	padding-top:6px;
+}
+.RnoFieldsValuesTable .RnoRadRight .RnoRad{
+	position:absolute;
+	margin-left:-20px;
+}
+*:first-child+html .RnoFieldsValuesTable .RnoRadRight .RnoRad{
+	left:0;
+}
+.RnoFieldsValuesTable td p{
+	padding:0 0 4px 0;
+}
+
+/* Form element */
+.RnoForm input,
+.RnoForm select{
+	font-size:100%;
+	border:1px solid #7e9db9;
+	background-color:#FFF;
+	font-weight:normal;
+	vertical-align:top;
+}
+.RnoForm input{
+	padding:1px 0 0 4px;
+	min-height:1.5em;
+}
+* html .RnoForm input{
+	height:1.3em;
+}
+*:first-child+html .RnoForm input{
+	min-height:1.3em;
+}
+.RnoForm input.RnoChk{
+	border:none;
+	padding:0;
+	background:none;
+	margin:1px 0 2px 0;
+	height:auto;
+	min-height:1px;
+	vertical-align:top;
+}
+* html .RnoForm input.RnoChk{
+	margin:-3px 0 3px 0;
+}
+*:first-child+html .RnoForm input.RnoChk{
+	margin:-3px 0 3px 0;
+}
+.RnoForm input.RnoRad{
+	border:none;
+	padding:0;
+	background:none;
+	margin:2px 0 1px 0;
+	height:auto;
+	min-height:1px;
+	vertical-align:top;
+}
+* html .RnoForm input.RnoRad{
+	margin:-2px 0 0 0;
+}
+*:first-child+html .RnoForm input.RnoRad{
+	margin:-2px 0 0 0;
+}
+.RnoForm .RnoNote,
+.RnoForm .RnoNoteSmall{
+	display:block;
+	font-style:normal;
+	float:left;
+	padding:1px 4px 2px 2px;
+}
+.RnoForm .RnoNoteSmall{
+	font-size:90%;
+}
+.RnoForm .RnoUnder{
+	clear:left;
+	float:none;
+}
+.RnoForm .RnoFrmErrorMsg,
+.RnoForm .RnoFrmWarningMsg,
+.RnoForm .RnoFrmInfoMsg{
+	margin:2px 0 0 0;
+	display:table;
+	clear:left;
+}
+.RnoForm .RnoFrmErrorMsg strong,
+.RnoForm .RnoFrmWarningMsg strong,
+.RnoForm .RnoFrmInfoMsg strong{
+	display:table-cell;
+	display:inline-block;
+	background:#FEEEAB url(../images/erroricon_status.gif) 4px 3px no-repeat;
+    padding:5px 8px 7px 24px;
+	color:#FF0000;
+	font-weight:normal;
+	font-size:90%;
+}
+.RnoForm .RnoFrmWarningMsg strong{
+	color:#000;
+	background-image:url(../images/warningicon_status.gif);
+}
+.RnoForm .RnoFrmInfoMsg strong{
+	color:#000;
+	background-image:url(../images/informationicon_status.gif);
+}
+
+/* Input field elements */
+.RnoField_Std{
+	width:140px;
+}
+.RnoField_Email{
+	width:190px;
+}
+.RnoField_Tel{
+	width:100px;
+}
+.RnoField_API{
+	width:90px;
+}
+.RnoField_Des{
+	width:230px;
+}
+.RnoField_Fam{
+	width:50px;
+}
+.RnoField_Serv{
+	width:75px;
+}
+
+/* Data Tables */
+.RnoDataTableHeader{
+	padding:6px 0 6px 0;
+}
+.RnoDataTableHeader ul{
+	padding:3px 0 0 4px;
+	float:left;
+}
+.RnoDataTableHeader .RnoDataTablePaging{
+	padding:0;
+	margin:4px 0 0 0;
+	float:right;
+}
+.RnoDataTableHeader .RnoDataTableActions{
+/*	background:url(../images/p_table-header-actions.gif) 10px 4px no-repeat;
+	padding:0 0 0 30px;*/
+}
+.RnoDataTableHeader li label{
+	font-size:100%;
+	display:block;
+	padding:2px 8px 0 0;
+	float:left;
+	font-weight:bold;
+}
+.RnoDataTableHeader li input{
+	vertical-align:middle;
+}
+.RnoDataTableActions #RnoGroup{
+	width:110px;
+	margin:0 2px 0 0;
+}
+.RnoDataTableActions .RnoSep{
+	background:url(../images/table-header-actions-sep.gif) left center no-repeat;
+	padding-left:8px;
+}
+.RnoDataTableTitle{
+	font-weight:bold;
+	font-size:120%;
+	padding:4px 4px 0 0;
+}
+
+.RnoDataTable{
+	width:auto;
+}
+.RnoDataTable table{
+	width:98%;
+}
+.RnoDataTable .RnoSmallCell{
+	width:1%;
+}
+* html .RnoDataTable .RnoSmallCell{
+	width:0%;
+}
+*:first-child+html .RnoDataTable .RnoSmallCell{
+	width:0%;
+}
+.RnoDataTable th{
+	background:#EAEAEA url(../images/table-header-bg.gif) left bottom repeat-x;
+	text-align:left;
+	border:1px solid #aeaeac;
+	border-width:0 0 0 1px;
+	padding:4px 6px 6px 6px;
+	vertical-align:top;
+	font-weight:normal;
+}
+.RnoDataTable th.first{
+	border-left-color:#ffffff;
+}
+.RnoDataTable th.last{
+	border-right-color:#ffffff;
+}
+.RnoDataTable .RnoColGroup th{
+	background-image:none;
+}
+.RnoDataTable .RnoMainHeader th{
+	font-weight:bold;
+}
+.RnoDataTable th a,
+.RnoDataTable th span{
+	display:table-cell;
+	float:left;
+	font-size:100%;
+	padding:2px 0 1px 0;
+}
+* html .RnoDataTable th a,
+* html .RnoDataTable th span{
+	display:inline-block;
+}
+*:first-child+html .RnoDataTable th a,
+*:first-child+html .RnoDataTable th span{
+	display:inline-block;
+}
+.RnoDataTable th div{
+	padding:3px 0 0 0;
+	clear:left;
+	text-align:left;
+}
+.RnoDataTable .RnoBottom{
+	vertical-align:bottom;
+}
+.RnoDataTable .RnoTop{
+	vertical-align:top;
+}
+.RnoDataTable .RnoMiddle{
+	vertical-align:middle;
+}
+.RnoDataTable th.RnoRight a,
+.RnoDataTable th.RnoRight span{
+	float:right;
+}
+.RnoDataTable th.RnoRight div{
+	clear:right;
+	text-align:right;
+}
+.RnoDataTable th.RnoCenter,
+.RnoDataTable th.RnoCenter a,
+.RnoDataTable th.RnoCenter span,
+.RnoDataTable th.RnoCenter div{
+	text-align:center;
+}
+.RnoDataTable th.RnoCenter a,
+.RnoDataTable th.RnoCenter span{
+	float:none;
+}
+.RnoDataTable th div #RnoThId{
+	width:85px;
+}
+.RnoDataTable th div #RnoThDes{
+	width:135px;
+}
+.RnoDataTable th div #RnoThEtat{
+}
+.RnoDataTable th div #RnoThCrea{
+	width:85px;
+}
+.RnoDataTable th div #RnoThCout{
+	width:60px;
+}
+.RnoDataTable th.on{
+	background-color:#c5c6c8;
+}
+.RnoDataTable th a.RnoSortedAsc{
+	background:url(../images/table_sortedupicon.gif) 100% 0 no-repeat;
+	padding-right:18px;
+}
+.RnoDataTable th a.RnoSortedDesc{
+	background:url(../images/table_sorteddownicon.gif) 100% 0 no-repeat;
+	padding-right:18px;
+}
+.RnoDataTable td{
+	border:1px solid #FFF;
+	border-width:2px 0 2px 0;
+	padding:4px 5px 4px 5px;
+	vertical-align:middle;
+}
+.RnoDataTable .RnoDataTableLineAlt{
+	background-color:#EAEAEA;
+}
+.RnoDataTable .RnoDataTableLineOver{
+	background-color:#feeeab;
+}
+.RnoDataTable .RnoDataTableSectionTitle td{
+	background:#767A7D;
+	padding:5px 12px 4px 5px;
+	border-width:4px 0 0 0;
+	color:#FFF;
+}
+.RnoDataTable .RnoSub td,
+.RnoDataTable .Sub0 td{
+	background:none;
+	padding:3px 12px 0 0;
+	border-width:2px 0 0 0;
+}
+.RnoDataTable .Sub1 td{
+	background:none;
+	padding:3px 12px 0 0;
+	border-width:2px 0 0 0;
+}
+.RnoDataTable .RnoDataTableSectionTitle a:link,
+.RnoDataTable .RnoDataTableSectionTitle a:visited{
+	float:right;
+	display:block;
+	color:#FFF;
+}
+.RnoDataTable .RnoDataTableSectionTitle h4{
+	color:#FFF;
+	font-weight:bold;
+}
+.RnoDataTable .RnoSub h4,
+.RnoDataTable .Sub0 h4{
+	color:#3c4749;
+	font-weight:bold;
+}
+.RnoDataTable .RnoDataTableSectionTitle h4:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+
+.RnoDataTable .RnoDataTableSectionTitle h5{
+	color:#FFF;
+	font-weight:bold;
+}
+.RnoDataTable .RnoSub h5,
+.RnoDataTable .Sub1 h5{
+	color:#3c4749;
+	font-weight:bold;
+}
+.RnoDataTable .RnoDataTableSectionTitle h5:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.RnoForm .RnoDataTable .RnoChk{
+	margin:0;
+}
+* html .RnoForm .RnoDataTable .RnoChk{
+	margin:-4px 0 -4px -4px;
+}
+*:first-child+html .RnoForm .RnoDataTable .RnoChk{
+	margin:-4px 0 -4px -4px;
+}
+.RnoDataTable .RnoDataTableSectionTitle .RnoChk{
+	float:left;
+	margin:0 5px 2px 0;
+}
+* html .RnoDataTable .RnoDataTableSectionTitle .RnoChk{
+	margin:-4px 5px 0 -4px;
+}
+*:first-child+html .RnoDataTable .RnoDataTableSectionTitle .RnoChk{
+	margin:-4px 5px 0 -4px;
+}
+.RnoDataTable .RnoDataTableSectionTitle span,
+.RnoDataTable .RnoDataTableSectionTitle span.RnoDataTableSectionOpen{
+	float:left;
+	margin:-2px 0 0 0;
+	height:18px;
+	width:24px;
+	display:block;
+	overflow:hidden;
+	cursor:pointer;
+	cursor:hand;
+	background:url(../images/information_showicon.gif) 2px 2px no-repeat;
+}
+.RnoDataTable span.RnoDataTableSectionClosed{
+	background:url(../images/information_hiddenicon.gif) 4px 0 no-repeat;
+}
+* .RnoDataTable .RnoDataTableSectionTitle span,
+* .RnoDataTable .RnoDataTableSectionTitle span.RnoDataTableSectionOpen,
+* .RnoDataTable .RnoDataTableSectionTitle span.RnoDataTableSectionClosed{
+	margin-right:-3px;
+}
+.RnoDataTable td a:link{
+	color:#0000FF;
+}
+.RnoDataTable td a:visited{
+	color:#800080;
+}
+
+/* Page footer */
+#RnoFooter p{
+	text-align:center;
+	color:#747c7f;
+	font-size:90%;
+	padding:4px 0 0 0;
+}
+
+/* Modal dialog box */
+#RnoModalFreeze{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1000; 
+	height:1px;
+	width:1px;
+	overflow:hidden;
+	background-color:#000;
+	opacity:.25;
+	filter:alpha(opacity=25);
+	-moz-opacity:.25;
+	display:none;
+}
+#RnoModalScroll{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1001; 
+	height:1px;
+	width:1px;
+	overflow:hidden;
+	display:none;
+	font-size:70%;
+	text-align:left;
+}
+.RnoModalDialog{
+	border:1px solid #3C4749;
+	background-color:#FFF;
+	margin:0 auto 0 auto;
+	position:relative;
+	display:none;
+	min-height:1px;
+}
+* html .RnoModalDialog{
+	height:1%;
+}
+.RnoModalClose{
+	position:absolute;
+	right:0;
+	padding:4px;
+}
+.RnoModalTitle{
+	font-weight:bold;
+	font-size:120%;
+	color:#FFF;
+	background-color:#767A7D;
+	padding:6px 26px 8px 6px;
+}
+.RnoModalDialog #RnoMsgLayout{
+	clear:right;
+	padding:8px;
+	background-color:#FFF;
+}
+.RnoModalDialog #RnoMsgLayout #RnoMsg{
+	margin-top:0;
+	margin-bottom:0;
+}
+.RnoModalContent{
+	position:relative;
+	overflow:auto;
+	overflow-x:hidden;
+}
+.RnoModalWorkspace{
+	border:5px solid #CCC;
+	background-color:#FFF;
+	padding:1px 9px 9px 9px;
+}
+
+/* Steps */
+#RnoSteps li{
+	display:block;
+	position:relative;
+	float:left;
+}
+#RnoSteps.v1 li{
+	margin-right:-10px;
+}
+#RnoSteps.v2 li{
+	margin-right:-8px;
+}
+#RnoSteps.v3 li{
+	float:none;
+}
+#RnoSteps li:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+* html #RnoSteps li{
+	height:1%;
+}
+*:first-child+html #RnoSteps li{
+	height:1%;
+}
+
+#RnoSteps li div,
+#RnoSteps li p{
+	float:left;
+}
+#RnoSteps.v1 li p{
+	background:url(../images/p_steps1_2_m.gif) 0 0 repeat-x;
+
+}
+* html #RnoSteps.v1 li p{
+	height:59px;
+}
+#RnoSteps.v2 li p{
+	background:url(../images/p_steps2_2_m.gif) 0 0 repeat-x;
+	min-height:46px;
+}
+* html #RnoSteps.v2 li p{
+	height:46px;
+}
+
+#RnoSteps li span{
+	display:block;
+	float:left;
+	font-weight:bold;
+	padding:13px 8px 6px 0;
+	white-space:nowrap;
+}
+#RnoSteps.v1 li span{
+	font-size:120%;
+	padding-left:30px;
+	min-height:40px;
+}
+* html #RnoSteps.v2 li span{
+	height:59px;
+}
+#RnoSteps.v2 li span{
+	font-size:100%;
+	padding-left:16px;
+	min-height:27px;
+}
+* html #RnoSteps.v2 li span{
+	height:46px;
+}
+#RnoSteps.v1 li span.RSI10{
+	padding-left:44px;
+}
+#RnoSteps.v2 li span.RSI10{
+	padding-left:26px;
+}
+#RnoSteps.v1 li span.RnoSteps1Line{
+	padding-top:22px;
+	min-height:31px;
+}
+* html #RnoSteps.v2 li span.RnoSteps1Line{
+	height:22px;
+}
+#RnoSteps.v2 li span.RnoSteps1Line{
+	padding-top:18px;
+	min-height:22px;
+}
+* html #RnoSteps.v2 li span.RnoSteps1Line{
+	height:22px;
+}
+#RnoSteps.v1 li div,
+#RnoSteps.v1 li div div{
+	padding:0 0 0 16px;
+	height:59px;
+}
+#RnoSteps.v1 li div div{
+	padding:0 16px 0 0;
+}
+#RnoSteps.v2 li div,
+#RnoSteps.v2 li div div{
+	padding:0 0 0 12px;
+	height:46px;
+}
+#RnoSteps.v2 li div div{
+	padding:0 12px 0 0;
+}
+#RnoSteps.v1 li div{
+	background:url(../images/p_steps1_2_l.gif) left top no-repeat;
+}
+#RnoSteps.v1 li div div{
+	background:url(../images/p_steps1_2_r.gif) right top no-repeat;
+}
+#RnoSteps.v2 li div{
+	background:url(../images/p_steps2_2_l.gif) left top no-repeat;
+}
+#RnoSteps.v2 li div div{
+	background:url(../images/p_steps2_2_r.gif) right top no-repeat;
+}
+#RnoSteps #RnoStepsFirst div{
+	padding-left:0;
+}
+#RnoSteps #RnoStepsFirst div div p{
+	padding-left:3px;
+}
+#RnoSteps.v1 li p span{
+	background:url(../images/p_steps1_2_1.gif) 6px 17px no-repeat;
+}
+#RnoSteps.v1 li p .RSI1{
+	background-image:url(../images/p_steps1_2_1.gif);
+}
+#RnoSteps.v1 li p .RSI2{
+	background-image:url(../images/p_steps1_2_2.gif);
+}
+#RnoSteps.v1 li p .RSI3{
+	background-image:url(../images/p_steps1_2_3.gif);
+}
+#RnoSteps.v1 li p .RSI4{
+	background-image:url(../images/p_steps1_2_4.gif);
+}
+#RnoSteps.v1 li p .RSI5{
+	background-image:url(../images/p_steps1_2_5.gif);
+}
+#RnoSteps.v1 li p .RSI6{
+	background-image:url(../images/p_steps1_2_6.gif);
+}
+#RnoSteps.v1 li p .RSI7{
+	background-image:url(../images/p_steps1_2_7.gif);
+}
+#RnoSteps.v1 li p .RSI8{
+	background-image:url(../images/p_steps1_2_8.gif);
+}
+#RnoSteps.v1 li p .RSI9{
+	background-image:url(../images/p_steps1_2_9.gif);
+}
+#RnoSteps.v1 li p .RSI10{
+	background-image:url(../images/p_steps1_2_10.gif);
+}
+
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI1{
+	background-image:url(../images/p_steps1_1_1.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI2{
+	background-image:url(../images/p_steps1_1_2.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI3{
+	background-image:url(../images/p_steps1_1_3.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI4{
+	background-image:url(../images/p_steps1_1_4.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI5{
+	background-image:url(../images/p_steps1_1_5.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI6{
+	background-image:url(../images/p_steps1_1_6.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI7{
+	background-image:url(../images/p_steps1_1_7.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI8{
+	background-image:url(../images/p_steps1_1_8.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI9{
+	background-image:url(../images/p_steps1_1_9.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent p .RSI10{
+	background-image:url(../images/p_steps1_1_10.gif);
+}
+
+#RnoSteps.v2 li p span{
+	background:url(../images/p_steps2_2_1.gif) 6px 15px no-repeat;
+}
+#RnoSteps.v2 li p .RSI1{
+	background-image:url(../images/p_steps2_2_1.gif);
+}
+#RnoSteps.v2 li p .RSI2{
+	background-image:url(../images/p_steps2_2_2.gif);
+}
+#RnoSteps.v2 li p .RSI3{
+	background-image:url(../images/p_steps2_2_3.gif);
+}
+#RnoSteps.v2 li p .RSI4{
+	background-image:url(../images/p_steps2_2_4.gif);
+}
+#RnoSteps.v2 li p .RSI5{
+	background-image:url(../images/p_steps2_2_5.gif);
+}
+#RnoSteps.v2 li p .RSI6{
+	background-image:url(../images/p_steps2_2_6.gif);
+}
+#RnoSteps.v2 li p .RSI7{
+	background-image:url(../images/p_steps2_2_7.gif);
+}
+#RnoSteps.v2 li p .RSI8{
+	background-image:url(../images/p_steps2_2_8.gif);
+}
+#RnoSteps.v2 li p .RSI9{
+	background-image:url(../images/p_steps2_2_9.gif);
+}
+#RnoSteps.v2 li p .RSI10{
+	background-image:url(../images/p_steps2_2_10.gif);
+}
+
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI1{
+	background-image:url(../images/p_steps2_1_1.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI2{
+	background-image:url(../images/p_steps2_1_2.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI3{
+	background-image:url(../images/p_steps2_1_3.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI4{
+	background-image:url(../images/p_steps2_1_4.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI5{
+	background-image:url(../images/p_steps2_1_5.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI6{
+	background-image:url(../images/p_steps2_1_6.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI7{
+	background-image:url(../images/p_steps2_1_7.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI8{
+	background-image:url(../images/p_steps2_1_8.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI9{
+	background-image:url(../images/p_steps2_1_9.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent p .RSI10{
+	background-image:url(../images/p_steps2_1_10.gif);
+}
+
+#RnoSteps li.RnoStepsDone p{
+	background:#aeaeac;
+}
+#RnoSteps.v1 li.RnoStepsDone div{
+	background-image:url(../images/p_steps1_0_l.gif);
+}
+#RnoSteps.v1 li.RnoStepsDone div div{
+	background-image:url(../images/p_steps1_0_r.gif);
+}
+#RnoSteps.v2 li.RnoStepsDone div{
+	background-image:url(../images/p_steps2_0_l.gif);
+}
+#RnoSteps.v2 li.RnoStepsDone div div{
+	background-image:url(../images/p_steps2_0_r.gif);
+}
+#RnoSteps #RnoStepsFirst.RnoStepsDone div{
+	background-image:none;
+}
+#RnoSteps.v1 #RnoStepsFirst.RnoStepsDone div div{
+	background-image:url(../images/p_steps1_0_r.gif);
+}
+#RnoSteps.v2 #RnoStepsFirst.RnoStepsDone div div{
+	background-image:url(../images/p_steps2_0_r.gif);
+}
+#RnoSteps li.RnoStepsCurrent p{
+	background:#FFF;
+}
+#RnoSteps li.RnoStepsCurrent p span{
+	color:#000;
+}
+#RnoSteps.v2 li.RnoStepsCurrent p span{
+	padding-left:26px;
+}
+
+#RnoSteps.v1 li.RnoStepsCurrent div{
+	background-image:url(../images/p_steps1_1_l.gif);
+}
+#RnoSteps.v1 li.RnoStepsCurrent div div{
+	background-image:url(../images/p_steps1_1_r.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent div{
+	background-image:url(../images/p_steps2_1_l.gif);
+}
+#RnoSteps.v2 li.RnoStepsCurrent div div{
+	background-image:url(../images/p_steps2_1_r.gif);
+}
+#RnoSteps #RnoStepsFirst.RnoStepsCurrent div,
+#RnoSteps #RnoStepsLast.RnoStepsCurrent div div{
+	background:#fff;
+}
+
+/* Vertical steps */
+#RnoVertStepsLayout{
+	position:relative;
+}
+#RnoVertSteps{
+	position:absolute;
+	padding:45px 0 26px 0;
+	background:#FFF url(../images/stepsv_title.gif) 12px 9px no-repeat;
+	width:262px;
+}
+* html #RnoVertSteps{
+	left:-270px;
+}
+*:first-child+html #RnoVertSteps{
+	left:0;
+}
+#RnoVertStepsRight{
+	position:relative;
+	margin:0 0 0 270px;
+}
+* #RnoVertStepsRight{
+	height:1%;
+}
+#RnoVertStepsRight #RnoWorkspace{
+	background-position:right top;
+	background-repeat:no-repeat;
+}
+#RnoVertStepsRight.RSI1 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_1.gif);
+}
+#RnoVertStepsRight.RSI2 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_2.gif);
+}
+#RnoVertStepsRight.RSI3 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_3.gif);
+}
+#RnoVertStepsRight.RSI4 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_4.gif);
+}
+#RnoVertStepsRight.RSI5 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_5.gif);
+}
+#RnoVertStepsRight.RSI6 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_6.gif);
+}
+#RnoVertStepsRight.RSI7 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_7.gif);
+}
+#RnoVertStepsRight.RSI8 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_8.gif);
+}
+#RnoVertStepsRight.RSI9 #RnoWorkspace{
+	background-image:url(../images/p_stepsv_3_9.gif);
+}
+
+#RnoVertStepsRight .RnoVertStepsTitle{
+	font-weight:bold;
+	font-size:130%;
+	padding:24px 0 0 4px;
+}
+#RnoVertSteps li{
+	border-bottom:1px solid #C4D6DB;
+	margin:0 10px 0 10px;
+}
+#RnoVertSteps #RnoStepsFirst{
+	border-top:1px solid #C4D6DB;
+}
+#RnoVertSteps li p{
+	padding:12px 12px 12px 27px;
+	font-size:110%;
+	color:#CCC;
+	font-weight:bold;
+	background:url(../images/p_stepsv_2_1.gif) left center no-repeat;
+}
+#RnoVertSteps li.RnoStepsDone,
+#RnoVertSteps li.RnoStepsDone p{
+	color:#767A7D;
+}
+#RnoVertSteps li.RnoStepsCurrent,
+#RnoVertSteps li.RnoStepsCurrent p{
+	color:#3D464B;
+}
+#RnoVertSteps li ul{
+	border-top:1px solid #C4D6DB;
+	padding:8px 0 14px 27px;
+}
+#RnoVertSteps li li{
+	color:#CCC;
+	border:none;
+	margin:0;
+	font-weight:bold;
+	font-size:100%;
+	padding:0 0 2px 0;
+}
+
+#RnoVertSteps li p.RSI1{
+	background-image:url(../images/p_stepsv_2_1.gif);
+}
+#RnoVertSteps li p.RSI2{
+	background-image:url(../images/p_stepsv_2_2.gif);
+}
+#RnoVertSteps li p.RSI3{
+	background-image:url(../images/p_stepsv_2_3.gif);
+}
+#RnoVertSteps li p.RSI4{
+	background-image:url(../images/p_stepsv_2_4.gif);
+}
+#RnoVertSteps li p.RSI5{
+	background-image:url(../images/p_stepsv_2_5.gif);
+}
+#RnoVertSteps li p.RSI6{
+	background-image:url(../images/p_stepsv_2_6.gif);
+}
+#RnoVertSteps li p.RSI7{
+	background-image:url(../images/p_stepsv_2_7.gif);
+}
+#RnoVertSteps li p.RSI8{
+	background-image:url(../images/p_stepsv_2_8.gif);
+}
+#RnoVertSteps li p.RSI9{
+	background-image:url(../images/p_stepsv_2_9.gif);
+}
+
+#RnoVertSteps li.RnoStepsDone p.RSI1{
+	background-image:url(../images/p_stepsv_0_1.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI2{
+	background-image:url(../images/p_stepsv_0_2.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI3{
+	background-image:url(../images/p_stepsv_0_3.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI4{
+	background-image:url(../images/p_stepsv_0_4.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI5{
+	background-image:url(../images/p_stepsv_0_5.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI6{
+	background-image:url(../images/p_stepsv_0_6.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI7{
+	background-image:url(../images/p_stepsv_0_7.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI8{
+	background-image:url(../images/p_stepsv_0_8.gif);
+}
+#RnoVertSteps li.RnoStepsDone p.RSI9{
+	background-image:url(../images/p_stepsv_0_9.gif);
+}
+
+#RnoVertSteps li.RnoStepsCurrent p.RSI1{
+	background-image:url(../images/p_stepsv_1_1.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI2{
+	background-image:url(../images/p_stepsv_1_2.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI3{
+	background-image:url(../images/p_stepsv_1_3.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI4{
+	background-image:url(../images/p_stepsv_1_4.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI5{
+	background-image:url(../images/p_stepsv_1_5.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI6{
+	background-image:url(../images/p_stepsv_1_6.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI7{
+	background-image:url(../images/p_stepsv_1_7.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI8{
+	background-image:url(../images/p_stepsv_1_8.gif);
+}
+#RnoVertSteps li.RnoStepsCurrent p.RSI9{
+	background-image:url(../images/p_stepsv_1_9.gif);
+}
+
+/* Messages */
+#RnoMsg{
+	margin:10px auto 20px auto;
+}
+#RnoMsg td{
+	padding:8px 20px 12px 45px;
+	background-position:8px 3px;
+	background-repeat:no-repeat;
+	border:1px solid #000;
+}
+#RnoMsg h2{
+	font-weight:bold;
+	font-size:120%;
+	color:#000;
+}
+#RnoMsg p{
+	padding:8px 0 0 0;
+}
+#RnoMsg .RnoBtn{
+	padding-top:12px;
+}
+
+#RnoMsg.RnoMsgInfo td{
+	background-image:url(../images/information_pagetitleicon.gif);
+	border-color:#00A1C9;
+}
+#RnoMsg.RnoMsgInfo h2{
+	color:#00A1C9;
+}
+
+#RnoMsg.RnoMsgConfirm td{
+	background-image:url(../images/help_pagetitleicon.gif);
+	border-color:#00A1C9;
+}
+#RnoMsg.RnoMsgConfirm h2{
+	color:#00A1C9;
+}
+
+#RnoMsg.RnoMsgWarning td{
+	background-image:url(../images/warning_pagetitleicon.gif);
+	border-color:#F7B100;
+}
+#RnoMsg.RnoMsgWarning h2{
+	color:#F7B100;
+}
+
+#RnoMsg.RnoMsgError td{
+	background-image:url(../images/error_pagetitleicon.gif);
+	border-color:#FF0000;
+}
+#RnoMsg.RnoMsgError h2{
+	color:#FF0000;
+}
+
+#RnoMsgLayout{
+	padding:140px 0 140px 0;
+}
+
+/* HP */
+.RnoLayout-HP .Rno-2col{
+	padding:24px 0 12px 0;
+}
+.RnoLayout-HP .Rno-2col li.colA,
+.RnoLayout-HP .Rno-2col li.colB{
+	width:49%;
+	float:left;
+}
+.RnoLayout-HP .Rno-2col li.colB{
+	float:right;
+}
+.RnoLayout-HP li h2{
+	font-weight:bold;
+	font-size:130%;
+	padding:0 0 8px 0;
+}
+.RnoLayout-HP li div{
+	padding:0 12px 0 12px;
+}
+.RnoLayout-HP li div p{
+	padding:0 0 6px 0;
+	line-height:130%;
+}
+
+#RnoHPUser{
+	background-color:#aeaeac;
+	min-height:95px;
+}
+* html #RnoHPUser{
+	height:95px;
+}
+#RnoHPUser table{
+	margin:8px 0 0 0;
+}
+#RnoHPUser td{
+	vertical-align:top;
+	padding:2px 0 3px 0;
+}
+#RnoHPUser label{
+	color:#FFF;
+	display:block;
+	text-align:right;
+	font-weight:normal;
+}
+.RnoForm #RnoHPUser input{
+	border-color:#636363;
+}
+#RnoHPUser .RnoBtn{
+	padding-top:4px;
+}
+
+#RnoHPNew{
+	background-color:#ccc;
+	min-height:95px;
+}
+* html #RnoHPNew{
+	height:95px;
+}
+#RnoHPNew p{
+	padding:8px 0 0 0;
+}
+#RnoHPAsavoir{
+	border-left:7px solid #eaeaea;
+}
+
+#RnoHPActus{
+	border-left:7px solid #ffad00;
+}
+#RnoHPActus p strong{
+	color:#ffad00;
+}
+
+
+
+input.RnoSubmitBtn{
+	background-color:#EAEAEA;
+	border:1px solid #3C4749;
+	border-width:0 1px 1px 0;
+	padding:3px 6px 4px 6px;
+}
+
+.RnoColLeft {
+width: 47%;
+float: left;
+}
+
+.RnoColMiddle {
+width: 6%;
+float: left;
+}
+
+.RnoColRight {
+width: 47%;
+float: right;
+}
+
+.Rno2ColLeft {
+width: 48%;
+float: left;
+}
+
+
+.Rno2ColRight {
+width: 48%;
+float: right;
+}
+
+.Rno3ColLeft {
+width: 60%;
+float: left;
+}
+
+
+.Rno3ColRight {
+width: 39%;
+float: right;
+}
+
+.RnofClear{
+	clear:both;
+}
+.PopupHidden{
+  visibility:hidden;position:absolute;top:260px;left:400px;z-index:1;bgcolor:#FFFFFF;width:910px;
+}
+
+#doditobjects li a:hover
+{
+	background-color:#FEEEAB;
+}
+
+#doditobjects li a
+{
+	text-decoration:none;
+}
+
+#doditcriterias li a:hover
+{
+	background-color:#FEEEAB;
+}
+
+#doditcriterias li a
+{
+	text-decoration:none;
+}
+
+li.highlighted{
+	background-color:#FEEEAB;
+}
+
+li.selected{
+	background-color:#EAEAEA;
+}
+
+#RnoWorkspace h1{
+font-weight:bold;
+padding-top:10px;
+padding-bottom:10px;
+}
+
+.BorderButton{
+border: 1px red solid; 
+margin-bottom:5px;
+}

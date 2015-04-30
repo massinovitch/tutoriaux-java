@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+	<!-- Default Layout -->
+	<definition name="DefaultLayout" template="/common/DefaultLayout.jsp">
+		<put name="headerBar" value="/common/DefaultHeaderBar.jsp" />
+		<put name="menuBar" value="/common/DefaultMenuBarAcceuil.jsp" />
+		<put name="workingArea" value="/common/DefaultWorkingArea.jsp" />
+		<put name="footerBar" value="/common/DefaultFooterBar.jsp" />
+	</definition>
+	
+	<definition name="DefaultLoginLayout" template="/common/LoginLayout.jsp">
+		<put name="loginForm" value="/common/Login.jsp" type="page" />
+	</definition>	
+
+	<definition name="LoginLayout" extends="DefaultLoginLayout">
+		<put name="loginForm" value="/common/Login.jsp" type="page" />
+	</definition>	
+
+	<definition name="LogoutLayout" extends="DefaultLoginLayout">
+		<put name="loginForm" value="/common/Logout.jsp" type="page" />
+	</definition>
+
+	<definition name="DefaultAccueilLayout" extends="DefaultLayout">
+		<put name="menuBar" value="/common/DefaultMenuBarAcceuil.jsp" type="page" />
+	</definition>
+	
+</tiles-definitions>

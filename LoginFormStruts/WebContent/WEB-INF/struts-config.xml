@@ -18,14 +18,24 @@
 
 	    <action name="loginForm" path="/LoginPublic" type="com.raistudies.actions.LoginAction" scope="request" input="pages/Login.jsp">
 	        <forward name="failure" path="pages/Failure.jsp" redirect="true"/>
-	        <forward name="success" path="pages/Success.jsp" redirect="true"/>
+	        <forward name="success" path="DefaultAccueilLayout"/>
 	    </action>
 	    <action path="/Accueil" type="com.raistudies.actions.AccueilAction" scope="request" input="pages/Login.jsp">
 	        <forward name="failure" path="pages/Failure.jsp" redirect="true"/>
-	        <forward name="success" path="pages/Success.jsp" redirect="true"/>
+	        <forward name="success" path="DefaultAccueilLayout"/>
 	    </action>
-
 
     </action-mappings>
 
+	<!-- Message Resources -->
+	<message-resources parameter="resources.ApplicationResources" />
+
+	<!-- ===============================================Tiles plugin -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config"
+			value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="definitions-parser-validate"
+			value="true" />
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
 </struts-config>
