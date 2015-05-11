@@ -26,6 +26,7 @@
 	</definition>
 
 	<definition name="DefaultAccueilLayout" extends="DefaultLayout">
+		<put name="workingArea" value="/pages/Acceuil.jsp" />
 		<put name="menuBar" value="/common/DefaultMenuBarAcceuil.jsp" type="page" />
 	</definition>
 	
