@@ -1,1 +1,0 @@
-http_proxy=http://p054122:2015REZI@cosmos2.mc2.renault.fr:3128
