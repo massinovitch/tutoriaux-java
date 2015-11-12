@@ -120,9 +120,9 @@ public class Principal {
         WordnetHelp.initialize("resources/file_properties.xml");
         //System.out.println("SimilarTo distance summary<->synopsis: "+WordnetHelp.distance("summary", POS.NOUN, "synopsis", POS.NOUN, PointerType.SIMILAR_TO));
 		//int distance = WordnetHelp.distance("tree", POS.NOUN, "trunk", POS.NOUN, PointerType.HYPERNYM);
-        System.out.println("Choisir Méthode de désambiguisation (1 : désambiguiser les noms par calcul de distance, 2 : désambiguiser en prenant le premier nom de la liste).");
-		int typeMethodDesambiguisation = 1;//renvoi un entier 1 ou 2		
-        System.out.println("Choisir Méthode de Calcul de score (1 : noms + adjectifs + verbes, 2 : noms uniquement). ");
+        //System.out.println("Choisir Méthode de désambiguisation (1 : désambiguiser les noms par calcul de distance, 2 : désambiguiser en prenant le premier nom de la liste).");
+		int typeMethodDesambiguisation = 1;//Commun.getInt() renvoi un entier 1 ou 2		
+        //System.out.println("Choisir Méthode de Calcul de score (1 : noms + adjectifs + verbes, 2 : noms uniquement). ");
 		int typeMethodCalculScore = 2;//renvoi un entier 1 ou 2		
 		FileWordnet fileWordnet = new FileWordnet();
 		FileDocument fileDocument = new FileDocument();
@@ -164,11 +164,10 @@ public class Principal {
 			}
 		}
 		
-		System.out.println("1. Liste des ontologies et leurs concepts avant désambiguisation : ");
+		System.out.println("1. Liste des concepts avant désambiguisation : ");
 		//traiter ontologie par ontologie, niveau phrase
 		for (Entry<String, OntologieBeforeDisambiguation> entry : mapOntologiesBeforeDisambiguation.entrySet()) {
 			OntologieBeforeDisambiguation value = entry.getValue();
-			System.out.println("	- Ontologie : " + value.getName());
 			List<ConceptsInText> listConceptsInText = value.getListConcepts();
 			while (principal.existeTermeAmbigueInOntologie(listConceptsInText)) {
 				System.out.println("	* Desambiguisation niveau phrase : ");
@@ -210,33 +209,23 @@ public class Principal {
 			ontologieAfterDisambiguation.setListConcepts(listConceptAfterDisambiguation);
 			listOntologiesAfterDisambiguation.add(ontologieAfterDisambiguation);
 		}
-		System.out.println("2. Liste des ontologies et leurs concepts après désambiguisation : ");
+		System.out.println("2. Liste des concepts après désambiguisation : ");
 		
 		//calculer le poids de chaque ontologie dans le document
 		int[] poidsOntologies = new int[listOntologiesAfterDisambiguation.size()];
 		int nbParagraphe = listParagrphes.size();
 	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
 	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("	- Ontologie : " + ontologieAfterDisambiguation.getName());
 	    	for (int j = 0; j < ontologieAfterDisambiguation.getListConcepts().size(); j++) {
 		    	ontologieAfterDisambiguation.displayConcept(j);	    		
 	    	}
 	    	int poids = ontologieAfterDisambiguation.getPoidsOntologie(nbParagraphe, typeMethodCalculScore);
 	    	poidsOntologies[i] = poids;
 	    }
-		System.out.println("3. Poids des ontologies : ");
-	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
-	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("	- Ontologie \"" + ontologieAfterDisambiguation.getName() + "\" a le poids : " + poidsOntologies[i]);	    	
-	    }
-	    int selectedIndexOntologie = Commun.posMax(poidsOntologies);
-	    OntologieAfterDisambiguation selectedOntologie = listOntologiesAfterDisambiguation.get(selectedIndexOntologie);
-		System.out.println("4. Ontologie gardé est : " + selectedOntologie.getName());	    
 		
 		//les chemins entre les synsets
 	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
 	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("	- Ontologie : " + ontologieAfterDisambiguation.getName());
 	    	Set<String> setConcepts1 = new HashSet<String>();
 	    	for (int j = 0; j < ontologieAfterDisambiguation.getListConcepts().size() - 1; j++) {
 		    	Set<String> setConcepts2 = new HashSet<String>();

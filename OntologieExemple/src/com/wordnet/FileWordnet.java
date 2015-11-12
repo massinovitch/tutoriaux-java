@@ -37,10 +37,10 @@ public class FileWordnet {
 		FileDocument fileDocument = new FileDocument();
 		listOntologies = fileDocument.getListOntologies(GeneralConstants.FILENAME_ONTOLOGIES);
 		mapDomaineNames = fileWordnetDomaine.getMapDomaineNames(GeneralConstants.FILENAME_DOMAINE, listOntologies);
-		listConceptAdjectif = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADJECTIF);
-		listConceptAdverb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADVERB);
+		//listConceptAdjectif = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADJECTIF);
+		//listConceptAdverb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADVERB);
 		listConceptNoun = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_NOUN);
-		listConceptVerb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_VERB);
+		//listConceptVerb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_VERB);
 	}
 	
 	//créer Map des ontologies qui va contenire les concepts avant la desambiguisation. dans cette fonction, on va affecter juste le nom de l'ontologie
@@ -72,32 +72,7 @@ public class FileWordnet {
 		List<ConceptJwnl> listConcept = new ArrayList<ConceptJwnl>();
 		POS typeMot = mot.getType();
 		if (typeMot != null) {
-			if (typeMot.equals(POS.ADJECTIVE)){
-				listConcept.addAll(listConceptAdjectif);
-				listConcept.addAll(listConceptNoun);
-			} else if (typeMot.equals(POS.ADVERB)) {
-				listConcept.addAll(listConceptAdverb);
-				listConcept.addAll(listConceptNoun);
-			} else if (typeMot.equals(POS.NOUN)) {
-				listConcept.addAll(listConceptNoun);
-			} else if (typeMot.equals(POS.VERB)) {
-				listConcept.addAll(listConceptVerb);
-			}
-		}
-		else {//Traiter les cas particulier
-			if ( mot.getValue().equalsIgnoreCase(GeneralConstants.THAT)) {
-				listConcept.addAll(listConceptAdverb);
-			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.TOO)) {
-				listConcept.addAll(listConceptAdverb);
-				listConcept.addAll(listConceptAdjectif);
-			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.ALL)) {
-				listConcept.addAll(listConceptAdverb);
-				listConcept.addAll(listConceptAdjectif);
-			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.IN)) {
-				listConcept.addAll(listConceptAdverb);
-				listConcept.addAll(listConceptAdjectif);
-			}
-				
+			listConcept.addAll(listConceptNoun);
 		}
 		Iterator<ConceptJwnl> i = listConcept.iterator();
 		while(i.hasNext()){
