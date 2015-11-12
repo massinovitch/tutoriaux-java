@@ -1,1 +1,1 @@
-I created enrichment. It has domain ontology.
+I created text mining. It has machine learning.
