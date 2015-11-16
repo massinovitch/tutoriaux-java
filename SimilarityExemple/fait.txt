@@ -1,0 +1,3 @@
+1. copier le text à traiter est dans : test.txt
+2. introduire les ontologies (ligne par ligne) dans listOntologies.
+3. lancer la classe principale.
