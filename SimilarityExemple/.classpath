@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/stanford-postagger.jar"/>
 	<classpathentry kind="lib" path="lib/rita.jar"/>
 	<classpathentry kind="lib" path="lib/jdom-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

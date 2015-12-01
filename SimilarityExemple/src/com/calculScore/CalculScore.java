@@ -135,7 +135,7 @@ public class CalculScore {
 	}
 
 	
-	public List<Synset> getSynsets(String fileNameDocument) throws IOException, JWNLException, CloneNotSupportedException {				       		      
+	public List<Synset> getSynsets(String fileNameDocument) throws IOException, JWNLException, CloneNotSupportedException {	
 		int typeMethodDesambiguisation = 1;//désambiguiser les noms par calcul de distance     
 		int typeMethodCalculScore = 2;//par nom
 		FileWordnet fileWordnet = new FileWordnet();
@@ -171,30 +171,30 @@ public class CalculScore {
 				}
 			}
 		}
-		
-		System.out.println("1. Liste des ontologies et leurs concepts avant désambiguisation : ");
+		System.out.println("I. Le fichier traité : " + fileNameDocument);		
+		System.out.println("	1. Liste des ontologies et leurs concepts avant désambiguisation : ");
 		//traiter ontologie par ontologie, niveau phrase
 		for (Entry<String, OntologieBeforeDisambiguation> entry : mapOntologiesBeforeDisambiguation.entrySet()) {
 			OntologieBeforeDisambiguation value = entry.getValue();
-			System.out.println("	- Ontologie : " + value.getName());
+			System.out.println("		- Ontologie : " + value.getName());
 			List<ConceptsInText> listConceptsInText = value.getListConcepts();
 			while (principal.existeTermeAmbigueInOntologie(listConceptsInText)) {
-				System.out.println("	* Desambiguisation niveau phrase : ");
+				System.out.println("		* Desambiguisation niveau phrase : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.PHRASE, typeMethodDesambiguisation);
 				}
-				System.out.println("	* Desambiguisation niveau paragraphe : ");
+				System.out.println("		* Desambiguisation niveau paragraphe : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.PARAGRAPHE, typeMethodDesambiguisation);
 				}
-				System.out.println("	* Desambiguisation niveau Document : ");
+				System.out.println("		* Desambiguisation niveau Document : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.DOCUMENT, typeMethodDesambiguisation);
 				}
-				System.out.println("	* Desambiguisation entre distance ambigue : ");
+				System.out.println("		* Desambiguisation entre distance ambigue : ");
 				List<ConceptsInText> listConceptsAmbigue = principal.getListTermesAmbigue(listConceptsInText);
 				principal.desambiguisterListeTermesAmbigue(listConceptsAmbigue);
 			}
@@ -218,40 +218,39 @@ public class CalculScore {
 			ontologieAfterDisambiguation.setListConcepts(listConceptAfterDisambiguation);
 			listOntologiesAfterDisambiguation.add(ontologieAfterDisambiguation);
 		}
-		System.out.println("2. Liste des ontologies et leurs concepts après désambiguisation : ");
+		System.out.println("	2. Liste des ontologies et leurs concepts après désambiguisation : ");
 		
 		//calculer le poids de chaque ontologie dans le document
 		int[] poidsOntologies = new int[listOntologiesAfterDisambiguation.size()];
 		int nbParagraphe = listParagrphes.size();
 	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
 	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("	- Ontologie : " + ontologieAfterDisambiguation.getName());
+	    	System.out.println("		- Ontologie : " + ontologieAfterDisambiguation.getName());
 	    	for (int j = 0; j < ontologieAfterDisambiguation.getListConcepts().size(); j++) {
 		    	ontologieAfterDisambiguation.displayConcept(j);	    		
 	    	}
 	    	int poids = ontologieAfterDisambiguation.getPoidsOntologie(nbParagraphe, typeMethodCalculScore);
 	    	poidsOntologies[i] = poids;
 	    }
-		System.out.println("3. Poids des ontologies : ");
+		System.out.println("	3. Poids des ontologies : ");
 	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
 	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("	- Ontologie \"" + ontologieAfterDisambiguation.getName() + "\" a le poids : " + poidsOntologies[i]);	    	
+	    	System.out.println("		- Ontologie \"" + ontologieAfterDisambiguation.getName() + "\" a le poids : " + poidsOntologies[i]);	    	
 	    }
 	    int selectedIndexOntologie = Commun.posMax(poidsOntologies);
 	    OntologieAfterDisambiguation selectedOntologie = listOntologiesAfterDisambiguation.get(selectedIndexOntologie);
-		System.out.println("4. Ontologie gardé est : " + selectedOntologie.getName());	    
+		System.out.println("	4. Ontologie gardé est : " + selectedOntologie.getName());	    
 
     	List<Synset> listConcepts = new ArrayList<Synset>();
-    	List<String> listNumeroConcepts = new ArrayList<String>();
     	for (int i = 0; i < selectedOntologie.getListConcepts().size(); i++) {
     		ConceptInText c = selectedOntologie.getListConcepts().get(i);
     		String number = c.getConceptJwnl().getNumber();
     		String name = c.getConceptJwnl().getTerme();
-    		if (!listNumeroConcepts.contains(number)) {
-        		Synset s = new Synset();
-        		s.setNumero(number);
-        		s.setNom(name);
-        		listNumeroConcepts.add(number);
+    		Synset s = new Synset();
+    		s.setNumero(number);
+    		s.setNom(name);
+    		if (!listConcepts.contains(s)) {
+    			System.out.println("               synset : " + s.getNumero() + ", " + s.getNom());	    
         		listConcepts.add(s);    			
     		}
     	}
