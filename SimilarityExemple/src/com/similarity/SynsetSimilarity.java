@@ -7,13 +7,13 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 
-public class Synset implements Cloneable {
+public class SynsetSimilarity implements Cloneable {
 	
 	private String numero;
 	private String nom;
 	private List<String> listNumeroBranche;
 	
-	public Synset() {
+	public SynsetSimilarity() {
 		listNumeroBranche = new ArrayList<String>();
 	}
 	public String getNumero() {
@@ -43,7 +43,7 @@ public class Synset implements Cloneable {
 	      return false;
 	    if (getClass() != obj.getClass())
 	      return false;
-	    Synset other = (Synset) obj;
+	    SynsetSimilarity other = (SynsetSimilarity) obj;
 	    return new EqualsBuilder().append(numero, other.numero).isEquals();//mettre les champs à tester dans l'égalité.
 	  }
 	 

@@ -21,7 +21,7 @@ import com.ontologies.OntologieBeforeDisambiguation;
 import com.properties.Commun;
 import com.properties.Distance2Concepts;
 import com.properties.LevelSearch;
-import com.similarity.Synset;
+import com.similarity.SynsetSimilarity;
 import com.wordnet.FileWordnet;
 
 
@@ -135,7 +135,7 @@ public class CalculScore {
 	}
 
 	
-	public List<Synset> getSynsets(String fileNameDocument) throws IOException, JWNLException, CloneNotSupportedException {	
+	public List<SynsetSimilarity> getSynsets(String fileNameDocument) throws IOException, JWNLException, CloneNotSupportedException {	
 		int typeMethodDesambiguisation = 1;//désambiguiser les noms par calcul de distance     
 		int typeMethodCalculScore = 2;//par nom
 		FileWordnet fileWordnet = new FileWordnet();
@@ -241,12 +241,12 @@ public class CalculScore {
 	    OntologieAfterDisambiguation selectedOntologie = listOntologiesAfterDisambiguation.get(selectedIndexOntologie);
 		System.out.println("	4. Ontologie gardé est : " + selectedOntologie.getName());	    
 
-    	List<Synset> listConcepts = new ArrayList<Synset>();
+    	List<SynsetSimilarity> listConcepts = new ArrayList<SynsetSimilarity>();
     	for (int i = 0; i < selectedOntologie.getListConcepts().size(); i++) {
     		ConceptInText c = selectedOntologie.getListConcepts().get(i);
     		String number = c.getConceptJwnl().getNumber();
     		String name = c.getConceptJwnl().getTerme();
-    		Synset s = new Synset();
+    		SynsetSimilarity s = new SynsetSimilarity();
     		s.setNumero(number);
     		s.setNom(name);
     		if (!listConcepts.contains(s)) {
