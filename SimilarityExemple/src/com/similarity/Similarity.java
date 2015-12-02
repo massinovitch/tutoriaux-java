@@ -90,6 +90,10 @@ public class Similarity {
 						if ( !p.equals(anc) ) {
 							x = p;
 							parRef.setNbTour( parRef.getNbTour() + 1 );
+						} else {
+							ancetre = true;
+							exist = false;
+							parRef.setNbTour( parRef.getNbTour() + 1 );
 						}
 					} else {
 						ancetre = false;
