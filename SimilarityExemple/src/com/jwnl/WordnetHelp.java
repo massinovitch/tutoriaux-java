@@ -1,5 +1,6 @@
 package com.jwnl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ontologies.ConceptJwnl;
@@ -13,6 +14,7 @@ import rita.wordnet.jwnl.dictionary.MorphologicalProcessor;
 import rita.wordnet.jwnl.wndata.IndexWord;
 import rita.wordnet.jwnl.wndata.POS;
 import rita.wordnet.jwnl.wndata.PointerType;
+import rita.wordnet.jwnl.wndata.PointerUtils;
 import rita.wordnet.jwnl.wndata.Synset;
 import rita.wordnet.jwnl.wndata.Word;
 import rita.wordnet.jwnl.wndata.list.PointerTargetNode;
@@ -25,11 +27,11 @@ public class WordnetHelp {
 
 	// Dictionary object
 	public static Dictionary wordnet;
-	public static RiWordNet c;
+	public static RiWordNet riWordNet;
 
 	// Initialize the database!
 	public static void initialize(String propsFile) {
-		c = new RiWordNet("WordNet-2.0/");
+		riWordNet = new RiWordNet("WordNet-2.0/");
 		wordnet = Dictionary.getInstance();
 	}
 
@@ -63,12 +65,12 @@ public class WordnetHelp {
 			PointerTargetNodeList lists = getShallowest.getNodeList();
 			for (int i = 0 ; i < lists.size(); i++) {
 				PointerTargetNode s = (PointerTargetNode) lists.get(i);
-				Synset c = s.getSynset();
-				Word w = c.getWords()[0];
-				POS p = c.getPOS();
+				Synset r = s.getSynset();
+				Word w = r.getWords()[0];
+				POS p = r.getPOS();
 				if (p.equals(POS.NOUN)) {
 					SynsetSimilarity synsetSimilarity = new SynsetSimilarity();
-					Long l = (Long) c.getKey();
+					Long l = (Long) r.getKey();
 					String key = Long.toString(l);
 					int length = key.length();
 					for (int j = length; j < 8; j++) {// le numero d un synset a la taille de 8 chiffres. on complete à droite par des zero si il n y a pas 8 chiffre
@@ -76,12 +78,73 @@ public class WordnetHelp {
 					}
 					String synset = key + GeneralConstants.SEPARATEUR_TIRET + GeneralConstants.SUFFIXE_NOUN;
 					synsetSimilarity.setNumero(synset);
-					synsetSimilarity.setNom(w.getLemma());	
-					listChemin.add(synsetSimilarity);
+					synsetSimilarity.setNom(w.getLemma());
+					if ( !synsetSimilarity.equals(w1)) {//dans la liste des chemins retournée. on integre w2, mais pas w1
+						listChemin.add(synsetSimilarity);						
+					}
 				}
 			}				
 		}
 	}	
+	
+	public static List<SynsetSimilarity> getFather(SynsetSimilarity sense) throws JWNLException, NullPointerException {
+		long synsetW1 = Long.parseLong(sense.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0]) ;
+		long synset1[] = {synsetW1};
+		IndexWord indexWord = new IndexWord(sense.getNom(), POS.NOUN, synset1);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
+		Synset synset = indexWord.getSense(1);
+		PointerTargetNodeList lists = PointerUtils.getInstance().getDirectHypernyms(synset);
+        // Iterate through the related list and make an ArrayList of Synsets to send back
+        List<SynsetSimilarity> listFather = new ArrayList<SynsetSimilarity>();
+		for (int i = 0 ; i < lists.size(); i++) {
+			PointerTargetNode s = (PointerTargetNode) lists.get(i);
+			Synset r = s.getSynset();
+			Word w = r.getWords()[0];
+			POS p = r.getPOS();
+			if (p.equals(POS.NOUN)) {
+				SynsetSimilarity synsetSimilarity = new SynsetSimilarity();
+				Long l = (Long) r.getKey();
+				String key = Long.toString(l);
+				int length = key.length();
+				for (int j = length; j < 8; j++) {// le numero d un synset a la taille de 8 chiffres. on complete à droite par des zero si il n y a pas 8 chiffre
+					key = "0" + key;
+				}
+				String cle = key + GeneralConstants.SEPARATEUR_TIRET + GeneralConstants.SUFFIXE_NOUN;
+				synsetSimilarity.setNumero(cle);
+				synsetSimilarity.setNom(w.getLemma());
+				listFather.add(synsetSimilarity);						
+			}
+		}				
+        return listFather;
+    }
+	
+	public static SynsetSimilarity getCommonParent(SynsetSimilarity w1, SynsetSimilarity w2) throws JWNLException {
+		long synsetW1 = Long.parseLong(w1.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0]) ;
+		long synset1[] = {synsetW1};
+		IndexWord start = new IndexWord(w1.getNom(), POS.NOUN, synset1);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
+		long synsetW2 = Long.parseLong(w2.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0]) ;
+		long synset2[] = {synsetW2};
+		IndexWord end = new IndexWord(w2.getNom(), POS.NOUN, synset2);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
+		if ((start != null) && (end != null)) {
+			Synset s = riWordNet.getCommonParent(start, end);
+			Word w = s.getWords()[0];
+			POS p = s.getPOS();
+			if (p.equals(POS.NOUN)) {
+				SynsetSimilarity synsetSimilarity = new SynsetSimilarity();
+				Long l = (Long) s.getKey();
+				String key = Long.toString(l);
+				int length = key.length();
+				for (int j = length; j < 8; j++) {// le numero d un synset a la taille de 8 chiffres. on complete à droite par des zero si il n y a pas 8 chiffre
+					key = "0" + key;
+				}
+				String cle = key + GeneralConstants.SEPARATEUR_TIRET + GeneralConstants.SUFFIXE_NOUN;
+				synsetSimilarity.setNumero(cle);
+				synsetSimilarity.setNom(w.getLemma());
+				return synsetSimilarity;
+			}
+			
+		}
+		return null;
+	}
 	
 	public static float getDistance(ConceptJwnl w1, ConceptJwnl w2) throws JWNLException {			
 		long synsetW1 = Long.parseLong(w1.getNumber().split("-")[0]) ;
@@ -90,7 +153,7 @@ public class WordnetHelp {
 		long synsetW2 = Long.parseLong(w2.getNumber().split("-")[0]) ;
 		long synset2[] = {synsetW2};
 		IndexWord iw2 = new IndexWord(w2.getTerme(), w2.getType(), synset2);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
-		return c.getWordDistance(iw1, iw2);
+		return riWordNet.getWordDistance(iw1, iw2);
 	}
 
 }

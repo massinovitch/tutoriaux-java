@@ -29,6 +29,16 @@ public class Principal {
 		similarity.synLiasion(T1);
 		System.out.println("I. synLiasion : contenu T2");	
 		similarity.synLiasion(T2);
+		System.out.println("I. enrichD_ancetre : contenu T1");	
+		similarity.enrichD_ancetre(T2, T1);//enrichissement de T1 en fonction de T2
+		System.out.println("I. enrichD_ancetre : contenu T2");	
+		similarity.enrichD_ancetre(T1, T2);//enrichissement de T2 en fonction de T1
+		System.out.println("I. parComDi : contenu T1");	
+		similarity.parComDi(T1);//Enrichissement de D1 en rajoutant les parents communs a ses synsets
+		System.out.println("I. parComDi : contenu T2");	
+		similarity.parComDi(T2);//Enrichissement de D2 en rajoutant les parents communs a ses synsets
+		System.out.println("I. parComD");	
+		similarity.parComD(T1, T2);;//Enrichissement de D2 en rajoutant les parents communs a ses synsets
 		System.out.println();
 
 	}
