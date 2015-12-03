@@ -126,22 +126,23 @@ public class WordnetHelp {
 		IndexWord end = new IndexWord(w2.getNom(), POS.NOUN, synset2);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
 		if ((start != null) && (end != null)) {
 			Synset s = riWordNet.getCommonParent(start, end);
-			Word w = s.getWords()[0];
-			POS p = s.getPOS();
-			if (p.equals(POS.NOUN)) {
-				SynsetSimilarity synsetSimilarity = new SynsetSimilarity();
-				Long l = (Long) s.getKey();
-				String key = Long.toString(l);
-				int length = key.length();
-				for (int j = length; j < 8; j++) {// le numero d un synset a la taille de 8 chiffres. on complete à droite par des zero si il n y a pas 8 chiffre
-					key = "0" + key;
-				}
-				String cle = key + GeneralConstants.SEPARATEUR_TIRET + GeneralConstants.SUFFIXE_NOUN;
-				synsetSimilarity.setNumero(cle);
-				synsetSimilarity.setNom(w.getLemma());
-				return synsetSimilarity;
-			}
-			
+			if (s != null ) {
+				Word w = s.getWords()[0];
+				POS p = s.getPOS();
+				if (p.equals(POS.NOUN)) {
+					SynsetSimilarity synsetSimilarity = new SynsetSimilarity();
+					Long l = (Long) s.getKey();
+					String key = Long.toString(l);
+					int length = key.length();
+					for (int j = length; j < 8; j++) {// le numero d un synset a la taille de 8 chiffres. on complete à droite par des zero si il n y a pas 8 chiffre
+						key = "0" + key;
+					}
+					String cle = key + GeneralConstants.SEPARATEUR_TIRET + GeneralConstants.SUFFIXE_NOUN;
+					synsetSimilarity.setNumero(cle);
+					synsetSimilarity.setNom(w.getLemma());
+					return synsetSimilarity;
+				}				
+			}			
 		}
 		return null;
 	}

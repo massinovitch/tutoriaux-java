@@ -100,7 +100,7 @@ public class Similarity {
 						exist = false;
 					}
 				}
-			} while (!exist);
+			} while (exist);
 		} 
 		return ancetre;
 	}
@@ -112,9 +112,6 @@ public class Similarity {
 		for (int j = 0; j < lengthTj; j++) {	 
 			SynsetSimilarity x = Tj.get(j);
 			for (int i = 0; i < Ti.size(); i++) {
-				if (j == 1 && i == 0) {
-					System.out.println("               i : " + i);	 					
-				}
 				SynsetSimilarity y = Ti.get(i);
 				if (!x.equals(y)) {					
 					if (ancetre(x, y, parRef)) {
