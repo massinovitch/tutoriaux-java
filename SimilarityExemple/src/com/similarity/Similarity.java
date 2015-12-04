@@ -70,7 +70,7 @@ public class Similarity {
 	}
 	
 	//recherche de l’ancêtre d’un synset
-	public boolean ancetre(SynsetSimilarity s, SynsetSimilarity anc, ParameterReference parRef) throws JWNLException {
+	private boolean ancetre(SynsetSimilarity s, SynsetSimilarity anc, ParameterReference parRef) throws JWNLException {
 		SynsetSimilarity p, x;
 		boolean exist, ancetre = false;
 		List<SynsetSimilarity> echemin = new ArrayList<SynsetSimilarity>();
@@ -167,4 +167,92 @@ public class Similarity {
 			
 		}
 	}
+	
+	//poids init
+	public void poidsInit(List<SynsetSimilarity> Ti) {
+		for (int i = 0; i < Ti.size(); i++) {
+			SynsetSimilarity s = Ti.get(i);
+			s.setP(1);
+		}
+	}
+	
+	//calcul de la distance entre un synset rajouté et le synset initial le plus bas
+	private int distance(SynsetSimilarity sraj, List<SynsetSimilarity> Tinit) throws JWNLException {
+		int max = 0;
+		for (int i = 0; i < Tinit.size(); i++) {
+			SynsetSimilarity s = Tinit.get(i);
+			ParameterReference parRef = new ParameterReference();
+			if (ancetre(s, sraj, parRef)) {
+				if (parRef.getNbTour() > max) {
+					max = parRef.getNbTour();
+				}
+			}
+		}
+		return max;		
+	}
+	
+	//calcul du poids des synsets rajoutés
+	public void poidsSraj(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tinit, int Tiinit, float pas) throws JWNLException {
+		for (int i = Tiinit; i < Ti.size(); i++) {
+			SynsetSimilarity s = Ti.get(i);
+			int dist = distance(s, Tinit);
+			float p = 1 - (dist * pas);
+			s.setP(p);
+		}		
+	}
+	
+	//Calcul de la somme des poids : numerateur/denominateur
+	public float similarite(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) {
+		float sim = 0;
+		int somN = 0, somD = 0;
+		float pp, pg;
+		for (int i = 0; i < Ti.size(); i++) {
+			SynsetSimilarity si = Ti.get(i);
+			boolean trouv = false;
+			int j = 0;
+			while ( (j < Tj.size()) && !trouv ) {
+				SynsetSimilarity sj = Tj.get(j);
+				if ( si.equals(sj) ) {
+					if (si.getP() == sj.getP()) {
+						somN += si.getP();
+						somD += si.getP();
+					} else if (si.getP() < sj.getP()) {
+						pp = si.getP();
+						pg = sj.getP();
+						somN += pp;
+						somD += pg;
+					} else {
+						pp = sj.getP();
+						pg = si.getP();
+						somN += pp;
+						somD += pg;
+					}
+					trouv = true;
+				} else {
+					j++;
+				}
+				
+			}
+			if ( !trouv ) {
+				somD += si.getP();
+			}
+		}
+		for (int i = 0; i < Tj.size(); i++) {
+			SynsetSimilarity si = Tj.get(i);
+			boolean trouv = false;
+			int j = 0;
+			while ( (j < Ti.size()) && !trouv ) {
+				SynsetSimilarity sj = Ti.get(j);
+				if ( si.equals(sj) ) {
+					trouv = true;
+				} else {
+					j++;
+				}
+			}
+			somD += si.getP();//Tj[i]
+		}
+		sim =  (float) somN / somD;
+		return sim;
+	}
+
 }

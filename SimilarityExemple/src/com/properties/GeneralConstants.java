@@ -4,6 +4,7 @@ public class GeneralConstants {
 	public static final String CARACTERE_AROBASE = Constants.getInstance().getProperty("caractere.arobase");
 	public static final String CARACTERE_TREMA = Constants.getInstance().getProperty("caractere.trema");
 	public static final String FILENAME_ONTOLOGIES = Constants.getInstance().getProperty("fileName.ontologies");
+	public static final String FILENAME_ARBRE_XML = Constants.getInstance().getProperty("fileName.arbreXml");
 	public static final String FILENAME_INDEX_ADJECTIF = Constants.getInstance().getProperty("fileName.index.adjectif");
 	public static final String FILENAME_INDEX_ADVERB = Constants.getInstance().getProperty("fileName.index.adverb");
 	public static final String FILENAME_INDEX_NOUN = Constants.getInstance().getProperty("fileName.index.noun");

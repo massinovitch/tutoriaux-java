@@ -11,6 +11,7 @@ public class SynsetSimilarity implements Cloneable {
 	
 	private String numero;
 	private String nom;
+	private float p;//poids
 	private List<String> listNumeroBranche;
 	
 	public SynsetSimilarity() {
@@ -27,6 +28,13 @@ public class SynsetSimilarity implements Cloneable {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+		
+	public float getP() {
+		return p;
+	}
+	public void setP(float p) {
+		this.p = p;
 	}
 	public List<String> getListNumeroBranche() {
 		return listNumeroBranche;

@@ -116,5 +116,22 @@ public class Commun {
 		}
 		return result;
 	}
-		
+	
+	//lit un entier à partir du clavier et le retourne
+	public static float getFloat() {
+		float result = 0;
+		boolean intInput = false;
+		while (!intInput) {//on continue à demander un entier jusqu'à ça soit bon
+			try {
+				Scanner sc = new Scanner(System.in);
+				System.out.print("     Veuillez saisir un nombre réel : ");
+				result = sc.nextFloat();
+				intInput = true;					
+			} catch (InputMismatchException e) {
+				intInput = false;
+			}
+			
+		}
+		return result;
+	}	
 }

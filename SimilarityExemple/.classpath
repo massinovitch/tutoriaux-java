@@ -7,5 +7,9 @@
 	<classpathentry kind="lib" path="lib/rita.jar"/>
 	<classpathentry kind="lib" path="lib/jdom-2.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-core.jar"/>
+	<classpathentry kind="lib" path="lib/saxpath.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
