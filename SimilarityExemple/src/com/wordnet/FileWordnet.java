@@ -12,8 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import rita.wordnet.jwnl.wndata.POS;
-
 
 import com.document.FileDocument;
 import com.document.Mot;
@@ -64,10 +62,7 @@ public class FileWordnet {
 		ConceptsInText listConceptBeginWithMotAndEqualWithTerme = new ConceptsInText();
 		List<ConceptJwnl> listConceptJwnl = new ArrayList<ConceptJwnl>();
 		List<ConceptJwnl> listConcept = new ArrayList<ConceptJwnl>();
-		POS typeMot = mot.getType();
-		if (typeMot != null && typeMot.equals(POS.NOUN)) {
-			listConcept.addAll(listConceptNoun);
-		}
+		listConcept.addAll(listConceptNoun);
 		Iterator<ConceptJwnl> i = listConcept.iterator();
 		while(i.hasNext()){
 			ConceptJwnl concept = i.next();
