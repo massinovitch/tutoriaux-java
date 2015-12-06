@@ -79,7 +79,7 @@ public class CreerArbreXML {
 		Document document = new Document(racine);		
 		for(Entry<String, Noeud> entry : mapRacines.entrySet()) {
 			Noeud valeur = entry.getValue();
-			Element r = new Element("racine");
+			Element r = new Element("noeud");
 			racine.addContent(r);
 			Attribute attribute = new Attribute("synset", valeur.getSynset());
 			r.setAttribute(attribute);

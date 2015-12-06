@@ -69,7 +69,6 @@ public class Principal {
 		lireArbreXML.brancheSyn(T1);
 		System.out.println("brancheSyn T2");
 		lireArbreXML.brancheSyn(T2);
-		System.out.println("similarite");
 		float f = similarity.similarite(T1, T2);
 		System.out.println("similarite : " + f);
 

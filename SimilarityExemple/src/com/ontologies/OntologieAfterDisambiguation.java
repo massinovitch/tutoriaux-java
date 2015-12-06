@@ -146,7 +146,5 @@ public class OntologieAfterDisambiguation {
 		ConceptInText coneceptInText = listConcepts.get(indexConceptsInText);
 		ConceptJwnl conceptJwnl = coneceptInText.getConceptJwnl();
 		PositionsInText positionInText = coneceptInText.getPositionInText();
-		System.out.println("		Terme : \"" + conceptJwnl.getTerme() + "\" à la position, numero paragraphe : " + positionInText.getPositionOfParagrapheWhichContainsWordInDocument() + ", numero de phrase : " + positionInText.getPositionOfPhraseWhichContainsWordInParagrphe() + ", numéro terme dans phrase : " + positionInText.getPositionInPhrase());
-		System.out.println("			concept numéro : " + conceptJwnl.getNumber());
 	}	
 }

@@ -36,6 +36,7 @@ public class LireArbreXML {
          while (iter.hasNext()) {
         	 Element noeudCourant = (Element) iter.next();
         	 String numeroBranche = noeudCourant.getAttributeValue("branche");
+        	 System.out.println("				" + numeroBranche);	
         	 s.getListNumeroBranche().add(numeroBranche);
          }
     }
@@ -43,6 +44,7 @@ public class LireArbreXML {
     public void brancheSyn(List<SynsetSimilarity> Ti) throws JDOMException {
     	for (int i = 0; i < Ti.size(); i++) {
     		SynsetSimilarity s = Ti.get(i);
+    		System.out.println("		branches du synset : " + s.getNumero() + " " + s.getNom());	
     		updateBrancheSynset(s);
     	}
     }

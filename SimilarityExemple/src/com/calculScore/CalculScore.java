@@ -86,7 +86,6 @@ public class CalculScore {
 				ConceptJwnl conceptJwnli = conceptsInText1.getListConceptJwnl().get(i);
 				ConceptJwnl conceptJwnlj = conceptsInText2.getListConceptJwnl().get(j);				
 				float distance = WordnetHelp.getDistance(conceptJwnli, conceptJwnlj);
-				System.out.println("				Le distance entre " + conceptJwnli.getTerme() + " " + conceptJwnli.getNumber() + " et " + conceptJwnlj.getTerme() + " " + conceptJwnlj.getNumber() + " est : " + distance);
 				Distance2Concepts distanceConcept = new Distance2Concepts();
 				distanceConcept.setIndex1(i);
 				distanceConcept.setIndex2(j);				
@@ -108,7 +107,6 @@ public class CalculScore {
 			List<ConceptJwnl> newListConceptJwnl = new ArrayList<ConceptJwnl>();
 			newListConceptJwnl.add(selectedConceptJwnl);
 			conceptsInText.setListConceptJwnl(newListConceptJwnl);//	
-			System.out.println("		Terme : \"" + selectedConceptJwnl.getTerme() + " " + selectedConceptJwnl.getNumber() + " a été selectionné");
 		} else if ( listConceptsInText.size() > 1 ) {//nombre terme ambigue superieur à 2. désambiguiser au moins de termes
 			int length = listConceptsInText.size() - 1;
 			Distance2Concepts [] tabDistance = new Distance2Concepts [length];//tableau contenant les distance minimum entre (le terme i et i+1)
@@ -125,12 +123,10 @@ public class CalculScore {
 			newListConceptJwnl1.add(conceptJwnl1);
 			conceptsInText1.setListConceptJwnl(newListConceptJwnl1);
 			ConceptsInText conceptsInText2 = listConceptsInText.get(distanceMin.getPositionConceptInListAmbigu() + 1);
-			System.out.println("		Terme : \"" + conceptJwnl1.getTerme() + " " + conceptJwnl1.getNumber() + " a été selectionné");
 			ConceptJwnl conceptJwnl2 = conceptsInText2.getListConceptJwnl().get(distanceMin.getIndex2());//selection l'elemeent le plus proche du voisin non ambigue
 			List<ConceptJwnl> newListConceptJwnl2 = new ArrayList<ConceptJwnl>();
 			newListConceptJwnl2.add(conceptJwnl2);
 			conceptsInText2.setListConceptJwnl(newListConceptJwnl2);//	
-			System.out.println("		Terme : \"" + conceptJwnl2.getTerme() + " " + conceptJwnl2.getNumber() + " a été selectionné");						
 		}
 	}
 
@@ -172,29 +168,23 @@ public class CalculScore {
 			}
 		}
 		System.out.println("I. Le fichier traité : " + fileNameDocument);		
-		System.out.println("	1. Liste des ontologies et leurs concepts avant désambiguisation : ");
 		//traiter ontologie par ontologie, niveau phrase
 		for (Entry<String, OntologieBeforeDisambiguation> entry : mapOntologiesBeforeDisambiguation.entrySet()) {
 			OntologieBeforeDisambiguation value = entry.getValue();
-			System.out.println("		- Ontologie : " + value.getName());
 			List<ConceptsInText> listConceptsInText = value.getListConcepts();
 			while (principal.existeTermeAmbigueInOntologie(listConceptsInText)) {
-				System.out.println("		* Desambiguisation niveau phrase : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.PHRASE, typeMethodDesambiguisation);
 				}
-				System.out.println("		* Desambiguisation niveau paragraphe : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.PARAGRAPHE, typeMethodDesambiguisation);
 				}
-				System.out.println("		* Desambiguisation niveau Document : ");
 				for (int i = 0; i < listConceptsInText.size(); i++) {
 					value.displayConcept(i);
 					value.filter(i, LevelSearch.DOCUMENT, typeMethodDesambiguisation);
 				}
-				System.out.println("		* Desambiguisation entre distance ambigue : ");
 				List<ConceptsInText> listConceptsAmbigue = principal.getListTermesAmbigue(listConceptsInText);
 				principal.desambiguisterListeTermesAmbigue(listConceptsAmbigue);
 			}
@@ -218,28 +208,17 @@ public class CalculScore {
 			ontologieAfterDisambiguation.setListConcepts(listConceptAfterDisambiguation);
 			listOntologiesAfterDisambiguation.add(ontologieAfterDisambiguation);
 		}
-		System.out.println("	2. Liste des ontologies et leurs concepts après désambiguisation : ");
 		
 		//calculer le poids de chaque ontologie dans le document
 		int[] poidsOntologies = new int[listOntologiesAfterDisambiguation.size()];
 		int nbParagraphe = listParagrphes.size();
 	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
 	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("		- Ontologie : " + ontologieAfterDisambiguation.getName());
-	    	for (int j = 0; j < ontologieAfterDisambiguation.getListConcepts().size(); j++) {
-		    	ontologieAfterDisambiguation.displayConcept(j);	    		
-	    	}
 	    	int poids = ontologieAfterDisambiguation.getPoidsOntologie(nbParagraphe, typeMethodCalculScore);
 	    	poidsOntologies[i] = poids;
 	    }
-		System.out.println("	3. Poids des ontologies : ");
-	    for (int i = 0; i < listOntologiesAfterDisambiguation.size(); i++) {
-	    	OntologieAfterDisambiguation ontologieAfterDisambiguation = listOntologiesAfterDisambiguation.get(i);
-	    	System.out.println("		- Ontologie \"" + ontologieAfterDisambiguation.getName() + "\" a le poids : " + poidsOntologies[i]);	    	
-	    }
 	    int selectedIndexOntologie = Commun.posMax(poidsOntologies);
 	    OntologieAfterDisambiguation selectedOntologie = listOntologiesAfterDisambiguation.get(selectedIndexOntologie);
-		System.out.println("	4. Ontologie gardé est : " + selectedOntologie.getName());	    
 
     	List<SynsetSimilarity> listConcepts = new ArrayList<SynsetSimilarity>();
     	for (int i = 0; i < selectedOntologie.getListConcepts().size(); i++) {
