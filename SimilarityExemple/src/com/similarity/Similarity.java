@@ -173,6 +173,7 @@ public class Similarity {
 		for (int i = 0; i < Ti.size(); i++) {
 			SynsetSimilarity s = Ti.get(i);
 			s.setP(1);
+			System.out.println("               synset : " + s.getNumero() + ", " + s.getNom() + " poids : " + s.getP());	 
 		}
 	}
 	
@@ -198,6 +199,7 @@ public class Similarity {
 			int dist = distance(s, Tinit);
 			float p = 1 - (dist * pas);
 			s.setP(p);
+			System.out.println("               synset : " + s.getNumero() + ", " + s.getNom() + " poids : " + s.getP());	 
 		}		
 	}
 	
