@@ -33,6 +33,10 @@ public class Principal {
 		List<SynsetSimilarity> T2 = new ArrayList<SynsetSimilarity>();
 		calculScore.getSynsets(fileNameDocument2, T2);
 		T2init = T2.size();
+		System.out.println("Poidinit T1");
+		similarity.poidsInit(T1);
+		System.out.println("Poidinit T2");
+		similarity.poidsInit(T2);
 		List<SynsetSimilarity> Tinit = new ArrayList<SynsetSimilarity>();
 		System.out.println("creatVectInitT1T2 : contenu Tinit");	
 		similarity.creatVectInitT1T2(T1, T2, Tinit);
@@ -58,10 +62,6 @@ public class Principal {
 		similarity.parComD(T1, T2);;//Enrichissement de D2 en rajoutant les parents communs a ses synsets
 		//N4T1 = T1.size();
 		//N4T2 = T2.size();
-		System.out.println("Poidinit T1");
-		similarity.poidsInit(T1);
-		System.out.println("Poidinit T2");
-		similarity.poidsInit(T2);
 		float pas = Commun.getFloat();//taper le nombre pas
 		System.out.println("poidsSraj T1");
 		similarity.poidsSraj(T1, Tinit, T1init, pas);
