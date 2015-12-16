@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import rita.wordnet.jwnl.wndata.POS;
+
 
 import com.document.FileDocument;
 import com.document.Mot;
@@ -25,14 +27,20 @@ import com.properties.GeneralConstants;
 public class FileWordnet {
 	List<String> listOntologies;//tableau des ontologies
 	Map<String, String> mapDomaineNames;//map (cle, domaine) lu à partir du fichier wn-domains-3.2-20070223
+	List<ConceptJwnl> listConceptAdjectif;//list concept contenu dans fichier index.adj
+	List<ConceptJwnl> listConceptAdverb;//list concept contenu dans fichier index.adv
 	List<ConceptJwnl> listConceptNoun;//list concept contenu dans fichier index.noun
+	List<ConceptJwnl> listConceptVerb;//list concept contenu dans fichier index.verb	
 	
 	public FileWordnet() throws IOException{
 		FileWordnetDomaine fileWordnetDomaine = new FileWordnetDomaine();
 		FileDocument fileDocument = new FileDocument();
 		listOntologies = fileDocument.getListOntologies(GeneralConstants.FILENAME_ONTOLOGIES);
 		mapDomaineNames = fileWordnetDomaine.getMapDomaineNames(GeneralConstants.FILENAME_DOMAINE, listOntologies);
+		listConceptAdjectif = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADJECTIF);
+		listConceptAdverb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_ADVERB);
 		listConceptNoun = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_NOUN);
+		listConceptVerb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_VERB);
 	}
 	
 	//créer Map des ontologies qui va contenire les concepts avant la desambiguisation. dans cette fonction, on va affecter juste le nom de l'ontologie
@@ -62,7 +70,35 @@ public class FileWordnet {
 		ConceptsInText listConceptBeginWithMotAndEqualWithTerme = new ConceptsInText();
 		List<ConceptJwnl> listConceptJwnl = new ArrayList<ConceptJwnl>();
 		List<ConceptJwnl> listConcept = new ArrayList<ConceptJwnl>();
-		listConcept.addAll(listConceptNoun);
+		POS typeMot = mot.getType();
+		if (typeMot != null) {
+			if (typeMot.equals(POS.ADJECTIVE)){
+				listConcept.addAll(listConceptAdjectif);
+				listConcept.addAll(listConceptNoun);
+			} else if (typeMot.equals(POS.ADVERB)) {
+				listConcept.addAll(listConceptAdverb);
+				listConcept.addAll(listConceptNoun);
+			} else if (typeMot.equals(POS.NOUN)) {
+				listConcept.addAll(listConceptNoun);
+			} else if (typeMot.equals(POS.VERB)) {
+				listConcept.addAll(listConceptVerb);
+			}
+		}
+		else {//Traiter les cas particulier
+			if ( mot.getValue().equalsIgnoreCase(GeneralConstants.THAT)) {
+				listConcept.addAll(listConceptAdverb);
+			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.TOO)) {
+				listConcept.addAll(listConceptAdverb);
+				listConcept.addAll(listConceptAdjectif);
+			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.ALL)) {
+				listConcept.addAll(listConceptAdverb);
+				listConcept.addAll(listConceptAdjectif);
+			} if ( mot.getValue().equalsIgnoreCase(GeneralConstants.IN)) {
+				listConcept.addAll(listConceptAdverb);
+				listConcept.addAll(listConceptAdjectif);
+			}
+				
+		}
 		Iterator<ConceptJwnl> i = listConcept.iterator();
 		while(i.hasNext()){
 			ConceptJwnl concept = i.next();

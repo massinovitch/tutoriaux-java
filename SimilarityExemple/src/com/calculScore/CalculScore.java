@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import rita.wordnet.jwnl.JWNLException;
+import rita.wordnet.jwnl.wndata.POS;
 
 import com.document.FileDocument;
 import com.document.Mot;
@@ -20,6 +21,7 @@ import com.ontologies.OntologieAfterDisambiguation;
 import com.ontologies.OntologieBeforeDisambiguation;
 import com.properties.Commun;
 import com.properties.Distance2Concepts;
+import com.properties.GeneralConstants;
 import com.properties.LevelSearch;
 import com.similarity.SynsetSimilarity;
 import com.wordnet.FileWordnet;
@@ -162,7 +164,13 @@ public class CalculScore {
 						}
 						k = k + listConceptsForMot.getLengthConcept();
 					} else {//pas de concept pour ce mot, passer au mot suivant
-						k++;						
+						k++;			
+						if ( currentMot.getValue().equalsIgnoreCase(GeneralConstants.IN) ) {
+							Mot nextMot = listMots.get(k);
+							if (nextMot.getValue().equalsIgnoreCase(GeneralConstants.ORDER)) {
+								k++;
+							}
+						}						
 					}					
 				}
 			}
@@ -225,10 +233,11 @@ public class CalculScore {
     		ConceptInText c = selectedOntologie.getListConcepts().get(i);
     		String number = c.getConceptJwnl().getNumber();
     		String name = c.getConceptJwnl().getTerme();
+    		POS position = c.getConceptJwnl().getType();
     		SynsetSimilarity s = new SynsetSimilarity();
     		s.setNumero(number);
     		s.setNom(name);
-    		if (!listConcepts.contains(s)) {
+    		if (!listConcepts.contains(s) && position.equals(POS.NOUN)) {
     			System.out.println("               synset : " + s.getNumero() + ", " + s.getNom());	    
         		listConcepts.add(s);    			
     		}

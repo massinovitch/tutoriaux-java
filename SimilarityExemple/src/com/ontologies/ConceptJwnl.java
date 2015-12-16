@@ -28,8 +28,14 @@ public class ConceptJwnl implements Cloneable, Comparable<ConceptJwnl> {
 		return type;
 	}
 	public void setType() {
-		if ( number.endsWith(GeneralConstants.SUFFIXE_NOUN) ) {
-			this.type = POS.NOUN;			
+		if ( number.endsWith(GeneralConstants.SUFFIXE_ADJECTIF) ) {
+			this.type = POS.ADJECTIVE;			
+		} else if ( number.endsWith(GeneralConstants.SUFFIXE_ADVERB) ) {
+			this.type = POS.ADVERB;
+		} else if ( number.endsWith(GeneralConstants.SUFFIXE_NOUN) ) {
+			this.type = POS.NOUN;
+		} else if ( number.endsWith(GeneralConstants.SUFFIXE_VERB) ) {
+			this.type = POS.VERB;
 		}
 	}
 	public String getNameOntologie() {
