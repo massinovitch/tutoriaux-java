@@ -26,10 +26,12 @@ public class Principal {
 		String fileNameArbreXml = Constants.getInstance().getProperty("fileName.arbreXml");
 		LireArbreXML lireArbreXML = new LireArbreXML(fileNameArbreXml);
 		String fileNameDocument1 = Constants.getInstance().getProperty("fileName.document1");//le document qui va etre lu et traité par notre algo
-		List<SynsetSimilarity> T1 = calculScore.getSynsets(fileNameDocument1);
+		List<SynsetSimilarity> T1 = new ArrayList<SynsetSimilarity>();
+		String ontologie = calculScore.getSynsets(fileNameDocument1, T1);
 		T1init = T1.size();
 		String fileNameDocument2 = Constants.getInstance().getProperty("fileName.document2");//le document qui va etre lu et traité par notre algo
-		List<SynsetSimilarity> T2 = calculScore.getSynsets(fileNameDocument2);
+		List<SynsetSimilarity> T2 = new ArrayList<SynsetSimilarity>();
+		calculScore.getSynsets(fileNameDocument2, T2);
 		T2init = T2.size();
 		List<SynsetSimilarity> Tinit = new ArrayList<SynsetSimilarity>();
 		System.out.println("creatVectInitT1T2 : contenu Tinit");	
@@ -69,7 +71,7 @@ public class Principal {
 		lireArbreXML.brancheSyn(T1);
 		System.out.println("brancheSyn T2");
 		lireArbreXML.brancheSyn(T2);
-		float f = similarity.similarite(T1, T2);
+		float f = similarity.similarite(T1, T2, ontologie);
 		System.out.println("similarite : " + f);
 
 	}

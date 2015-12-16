@@ -204,7 +204,7 @@ public class Similarity {
 	}
 	
 	//Calcul de la somme des poids : numerateur/denominateur
-	public float similarite(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) {
+	public float similarite(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj, String ontologie) {
 		float sim = 0;
 		float somN = 0, somD = 0;
 		float pp, pg;

@@ -25,14 +25,17 @@ import com.ontologies.OntologieBeforeDisambiguation;
 import com.properties.GeneralConstants;
 
 public class FileWordnet {
-	List<String> listOntologies;//tableau des ontologies
-	Map<String, String> mapDomaineNames;//map (cle, domaine) lu à partir du fichier wn-domains-3.2-20070223
-	List<ConceptJwnl> listConceptAdjectif;//list concept contenu dans fichier index.adj
-	List<ConceptJwnl> listConceptAdverb;//list concept contenu dans fichier index.adv
-	List<ConceptJwnl> listConceptNoun;//list concept contenu dans fichier index.noun
-	List<ConceptJwnl> listConceptVerb;//list concept contenu dans fichier index.verb	
 	
-	public FileWordnet() throws IOException{
+	/**
+	 * CalculScore
+	 */
+	private static FileWordnet fileWordnet;
+
+	/**
+	 * Construncteur
+	 * @throws IOException 
+	 */
+	private FileWordnet() throws IOException {
 		FileWordnetDomaine fileWordnetDomaine = new FileWordnetDomaine();
 		FileDocument fileDocument = new FileDocument();
 		listOntologies = fileDocument.getListOntologies(GeneralConstants.FILENAME_ONTOLOGIES);
@@ -42,7 +45,76 @@ public class FileWordnet {
 		listConceptNoun = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_NOUN);
 		listConceptVerb = getListConceptFromIndexFile(GeneralConstants.FILENAME_INDEX_VERB);
 	}
+
+	/**
+	 * Returns the fichierGeometrieDAO instance (Design Pattern : Singleton)
+	 * 
+	 * @return fichierGeometrieDAO
+	 * @throws IOException 
+	 */
+	public static synchronized FileWordnet getInstance() throws IOException {
+		if (fileWordnet == null)
+			fileWordnet = new FileWordnet();
+		return fileWordnet;
+	}
 	
+	private List<String> listOntologies;//tableau des ontologies
+	private Map<String, String> mapDomaineNames;//map (cle, domaine) lu à partir du fichier wn-domains-3.2-20070223
+	private List<ConceptJwnl> listConceptAdjectif;//list concept contenu dans fichier index.adj
+	private List<ConceptJwnl> listConceptAdverb;//list concept contenu dans fichier index.adv
+	private List<ConceptJwnl> listConceptNoun;//list concept contenu dans fichier index.noun
+	private List<ConceptJwnl> listConceptVerb;//list concept contenu dans fichier index.verb	
+
+	
+	
+	public List<String> getListOntologies() {
+		return listOntologies;
+	}
+
+	public void setListOntologies(List<String> listOntologies) {
+		this.listOntologies = listOntologies;
+	}
+
+	public Map<String, String> getMapDomaineNames() {
+		return mapDomaineNames;
+	}
+
+	public void setMapDomaineNames(Map<String, String> mapDomaineNames) {
+		this.mapDomaineNames = mapDomaineNames;
+	}
+
+	public List<ConceptJwnl> getListConceptAdjectif() {
+		return listConceptAdjectif;
+	}
+
+	public void setListConceptAdjectif(List<ConceptJwnl> listConceptAdjectif) {
+		this.listConceptAdjectif = listConceptAdjectif;
+	}
+
+	public List<ConceptJwnl> getListConceptAdverb() {
+		return listConceptAdverb;
+	}
+
+	public void setListConceptAdverb(List<ConceptJwnl> listConceptAdverb) {
+		this.listConceptAdverb = listConceptAdverb;
+	}
+
+	public List<ConceptJwnl> getListConceptNoun() {
+		return listConceptNoun;
+	}
+
+	public void setListConceptNoun(List<ConceptJwnl> listConceptNoun) {
+		this.listConceptNoun = listConceptNoun;
+	}
+
+	public List<ConceptJwnl> getListConceptVerb() {
+		return listConceptVerb;
+	}
+
+	public void setListConceptVerb(List<ConceptJwnl> listConceptVerb) {
+		this.listConceptVerb = listConceptVerb;
+	}
+
 	//créer Map des ontologies qui va contenire les concepts avant la desambiguisation. dans cette fonction, on va affecter juste le nom de l'ontologie
 	public Map<String, OntologieBeforeDisambiguation> getMapOntologieBeforeDisambiguation() {
 		Map<String, OntologieBeforeDisambiguation> mapOntologieBeforeDisambiguation = new HashMap<String, OntologieBeforeDisambiguation>();

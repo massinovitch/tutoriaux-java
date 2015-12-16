@@ -133,10 +133,10 @@ public class CalculScore {
 	}
 
 	
-	public List<SynsetSimilarity> getSynsets(String fileNameDocument) throws IOException, JWNLException, CloneNotSupportedException {	
+	public String getSynsets(String fileNameDocument, List<SynsetSimilarity> listConcepts) throws IOException, JWNLException, CloneNotSupportedException {	
 		int typeMethodDesambiguisation = 1;//désambiguiser les noms par calcul de distance     
 		int typeMethodCalculScore = 2;//par nom
-		FileWordnet fileWordnet = new FileWordnet();
+		FileWordnet fileWordnet = FileWordnet.getInstance();
 		FileDocument fileDocument = new FileDocument();
 
 		List<Paragraphe> listParagrphes = fileDocument.getListParagraphes(fileNameDocument);
@@ -228,7 +228,6 @@ public class CalculScore {
 	    int selectedIndexOntologie = Commun.posMax(poidsOntologies);
 	    OntologieAfterDisambiguation selectedOntologie = listOntologiesAfterDisambiguation.get(selectedIndexOntologie);
 
-    	List<SynsetSimilarity> listConcepts = new ArrayList<SynsetSimilarity>();
     	for (int i = 0; i < selectedOntologie.getListConcepts().size(); i++) {
     		ConceptInText c = selectedOntologie.getListConcepts().get(i);
     		String number = c.getConceptJwnl().getNumber();
@@ -243,7 +242,7 @@ public class CalculScore {
     		}
     	}
     	
-    	return listConcepts;
+    	return selectedOntologie.getName();
 		
 	}
 }
