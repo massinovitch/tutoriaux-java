@@ -70,7 +70,6 @@ public class ConceptsInText {
 		for (int i = 0; i < conceptJwnlSize; i++ ) {//calculer la disantce entre chaque concept et le voisin selectionné
 			ConceptJwnl conceptJwnl = getListConceptJwnl().get(i);
 			float distance = WordnetHelp.getDistance(v, conceptJwnl);
-			System.out.println("				Le distance entre " + v.getTerme() + " " + v.getNumber() + " et " + conceptJwnl.getTerme() + " " + conceptJwnl.getNumber() + " est : " + distance);
 			DistanceConcept distanceConcept = new DistanceConcept();
 			distanceConcept.setIndex(i);
 			distanceConcept.setValue(distance);
@@ -87,11 +86,9 @@ public class ConceptsInText {
 			DistanceConcept disanceVdConcept = getDistanceMin(conceptJwnlVd);
 			DistanceConcept disanceVgConcept = getDistanceMin(conceptJwnlVg);			
 			if ( disanceVdConcept.getValue() < disanceVgConcept.getValue() ) {
-				System.out.println("				Le voisin qui a désambiguisé ce terme est de droite  : " + conceptJwnlVd.getNumber());
 				distanceConceptSelected = disanceVdConcept;
 				result = true;
 			} else if ( disanceVdConcept.getValue() > disanceVgConcept.getValue() ){
-				System.out.println("				Le voisin qui a désambiguisé ce terme est de gauche  : " + conceptJwnlVg.getNumber());
 				distanceConceptSelected = disanceVgConcept;
 				result = true;
 			}
@@ -99,13 +96,11 @@ public class ConceptsInText {
 			distanceConceptSelected = getDistanceMin(conceptJwnlVg);
 			if ( distanceConceptSelected.getValue() != 1.0) {
 				result = true;
-				System.out.println("				Le voisin qui a désambiguisé ce terme de gauche  : " + conceptJwnlVg.getNumber());
 			}
 		} else if (conceptJwnlVd != null) {
 			distanceConceptSelected = getDistanceMin(conceptJwnlVd);
 			if ( distanceConceptSelected.getValue() != 1.0) {
 				result = true;
-				System.out.println("				Le voisin qui a désambiguisé ce terme est de droite  : " + conceptJwnlVd.getNumber());
 			}
 		}
 		if ( result ) {

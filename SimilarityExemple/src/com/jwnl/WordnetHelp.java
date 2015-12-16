@@ -147,6 +147,17 @@ public class WordnetHelp {
 		return null;
 	}
 	
+	public static float getDistance(SynsetSimilarity w1, SynsetSimilarity w2) throws JWNLException {			
+		long synsetW1 = Long.parseLong(w1.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0]) ;
+		long synset1[] = {synsetW1};
+		IndexWord start = new IndexWord(w1.getNom(), POS.NOUN, synset1);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
+		long synsetW2 = Long.parseLong(w2.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0]) ;
+		long synset2[] = {synsetW2};
+		IndexWord end = new IndexWord(w2.getNom(), POS.NOUN, synset2);//c.getDictionary().getIndexWord(POS.NOUN, "bankrupt");
+		float d = riWordNet.getWordDistance(start, end);
+		return d;
+	}
+	
 	public static float getDistance(ConceptJwnl w1, ConceptJwnl w2) throws JWNLException {			
 		long synsetW1 = Long.parseLong(w1.getNumber().split("-")[0]) ;
 		long synset1[] = {synsetW1};

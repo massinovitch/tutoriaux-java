@@ -179,15 +179,4 @@ public class OntologieBeforeDisambiguation {
 		return true;
 	}
 	
-	public void displayConcept(int indexConceptsInText) {
-		ConceptsInText coneceptsInText = listConcepts.get(indexConceptsInText);
-		List<ConceptJwnl> listConceptJwnl = coneceptsInText.getListConceptJwnl();
-		PositionsInText positionInText = coneceptsInText.getPositionInText();
-		ConceptJwnl conceptJwnl = listConceptJwnl.get(0);
-		System.out.println("		Terme : \"" + conceptJwnl.getTerme() + "\" à la position, numero paragraphe : " + positionInText.getPositionOfParagrapheWhichContainsWordInDocument() + ", numero de phrase : " + positionInText.getPositionOfPhraseWhichContainsWordInParagrphe() + ", numéro terme dans phrase : " + positionInText.getPositionInPhrase());
-		for (int j = 0; j < listConceptJwnl.size(); j++) {
-			conceptJwnl = listConceptJwnl.get(j);
-			System.out.println("			concept numéro : " + conceptJwnl.getNumber());
-		}		
-	}
 }

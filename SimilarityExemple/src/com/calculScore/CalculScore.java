@@ -182,15 +182,12 @@ public class CalculScore {
 			List<ConceptsInText> listConceptsInText = value.getListConcepts();
 			while (principal.existeTermeAmbigueInOntologie(listConceptsInText)) {
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.displayConcept(i);
 					value.filter(i, LevelSearch.PHRASE, typeMethodDesambiguisation);
 				}
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.displayConcept(i);
 					value.filter(i, LevelSearch.PARAGRAPHE, typeMethodDesambiguisation);
 				}
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.displayConcept(i);
 					value.filter(i, LevelSearch.DOCUMENT, typeMethodDesambiguisation);
 				}
 				List<ConceptsInText> listConceptsAmbigue = principal.getListTermesAmbigue(listConceptsInText);

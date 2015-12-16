@@ -217,63 +217,72 @@ public class Similarity {
 		float pp, pg;
 		for (int i = 0; i < Ti.size(); i++) {
 			SynsetSimilarity si = Ti.get(i);
-			if ( si.getNumero().contains("03561924")) {
-				System.out.println("               synset : " + si.getNumero() + ", " + si.getNom() + " poids : " + si.getP());	 				
-			}
 			String nameOntologie = mapDomaineNames.get(si.getNumero());
-			String[] nameOntologies = nameOntologie.split(GeneralConstants.SEPARATEUR_ESPACE);
-			List<String> listNameOntologies = Arrays.asList(nameOntologies);
-			if (listNameOntologies.contains(ontologie)) {
-				boolean trouv = false;
-				int j = 0;
-				while ( (j < Tj.size()) && !trouv ) {
-					SynsetSimilarity sj = Tj.get(j);
-					if ( si.equals(sj) ) {
-						if (si.getP() == sj.getP()) {
-							somN += si.getP();
-							somD += si.getP();
-						} else if (si.getP() < sj.getP()) {
-							pp = si.getP();
-							pg = sj.getP();
-							somN += pp;
-							somD += pg;
+			if ( nameOntologie != null ) {
+				String[] nameOntologies = nameOntologie.split(GeneralConstants.SEPARATEUR_ESPACE);
+				List<String> listNameOntologies = Arrays.asList(nameOntologies);
+				if (listNameOntologies.contains(ontologie)) {
+					boolean trouv = false;
+					int j = 0;
+					while ( (j < Tj.size()) && !trouv ) {
+						SynsetSimilarity sj = Tj.get(j);
+						if ( si.equals(sj) ) {
+							if (si.getP() == sj.getP()) {
+								somN += si.getP();
+								somD += si.getP();
+							} else if (si.getP() < sj.getP()) {
+								pp = si.getP();
+								pg = sj.getP();
+								somN += pp;
+								somD += pg;
+							} else {
+								pp = sj.getP();
+								pg = si.getP();
+								somN += pp;
+								somD += pg;
+							}
+							trouv = true;
 						} else {
-							pp = sj.getP();
-							pg = si.getP();
-							somN += pp;
-							somD += pg;
+							j++;
 						}
-						trouv = true;
-					} else {
-						j++;
+						
 					}
-					
+					if ( !trouv ) {
+						somD += si.getP();
+					}				
+				} else {
+					System.out.println("               synset : " + si.getNumero() + ", " + si.getNom() + " n appartient pas à l ontologie " + ontologie);	 									
 				}
-				if ( !trouv ) {
-					somD += si.getP();
-				}				
+			} else {
+				System.out.println("               synset : " + si.getNumero() + ", " + si.getNom() + " n appartient pas à l ontologie " + ontologie);	 														
 			}
 		}
 		for (int i = 0; i < Tj.size(); i++) {
 			SynsetSimilarity si = Tj.get(i);
-			String[] nameOntologies = mapDomaineNames.get(si.getNumero()).split(GeneralConstants.SEPARATEUR_ESPACE);
-			List<String> listNameOntologies = Arrays.asList(nameOntologies);
-			if (listNameOntologies.contains(ontologie)) {
-				boolean trouv = false;
-				int j = 0;
-				while ( (j < Ti.size()) && !trouv ) {
-					SynsetSimilarity sj = Ti.get(j);
-					if ( si.equals(sj) ) {
-						trouv = true;
-					} else {
-						j++;
+			String nameOntologie = mapDomaineNames.get(si.getNumero());
+			if ( nameOntologie != null ) {
+				String[] nameOntologies = nameOntologie.split(GeneralConstants.SEPARATEUR_ESPACE);
+				List<String> listNameOntologies = Arrays.asList(nameOntologies);
+				if (listNameOntologies.contains(ontologie)) {
+					boolean trouv = false;
+					int j = 0;
+					while ( (j < Ti.size()) && !trouv ) {
+						SynsetSimilarity sj = Ti.get(j);
+						if ( si.equals(sj) ) {
+							trouv = true;
+						} else {
+							j++;
+						}
 					}
+					if (!trouv) {
+						somD += si.getP();//Tj[i]				
+					}				
+				} else {
+					System.out.println("               synset : " + si.getNumero() + ", " + si.getNom() + " n appartient pas à l ontologie " + ontologie);	 														
 				}
-				if (!trouv) {
-					somD += si.getP();//Tj[i]				
-				}				
-			}
-			
+			} else {
+				System.out.println("               synset : " + si.getNumero() + ", " + si.getNom() + " n appartient pas à l ontologie " + ontologie);	 									
+			}			
 		}
 		sim =  (float) somN / somD;
 		return sim;
