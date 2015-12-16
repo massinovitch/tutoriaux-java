@@ -206,7 +206,7 @@ public class Similarity {
 	//Calcul de la somme des poids : numerateur/denominateur
 	public float similarite(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) {
 		float sim = 0;
-		int somN = 0, somD = 0;
+		float somN = 0, somD = 0;
 		float pp, pg;
 		for (int i = 0; i < Ti.size(); i++) {
 			SynsetSimilarity si = Ti.get(i);
@@ -251,7 +251,9 @@ public class Similarity {
 					j++;
 				}
 			}
-			somD += si.getP();//Tj[i]
+			if (!trouv) {
+				somD += si.getP();//Tj[i]				
+			}
 		}
 		sim =  (float) somN / somD;
 		return sim;
