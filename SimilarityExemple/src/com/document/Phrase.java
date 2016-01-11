@@ -71,12 +71,15 @@ public class Phrase {
 	}
 	
 	public boolean isConceptExistInPhrase(ConceptJwnl concept, Mot mot) {
+		concept.setType();//affecter le bon type du concept
 		String terme = concept.getTerme();
 		String[] listMotsForConcept = terme.split(GeneralConstants.SEPARATEUR_UNDERSCORE);
 		boolean isConceptExistInPhrase = true;
 		int lenghtPhraseFromPositionMot = listMots.size() + 1 - mot.getPositionInText().getPositionInPhrase();
 		if ( lenghtPhraseFromPositionMot < concept.getLength()) {
 			isConceptExistInPhrase = false;//car la phrase n'a pas assez de mot pour etre egal au terme du concept
+		} else if ( concept.getLength() == 1 && concept.getType().equals(POS.NOUN) && !mot.getType().equals(POS.NOUN)) {
+			isConceptExistInPhrase = false;//si le concept est un nom de taille un et le mot n'est pas un nom, on ne prend pas le concept
 		} else {
 			for (int i = 0; i < concept.getLength(); i++) {
 				Mot motInPhrase = listMots.get(mot.getPositionInText().getPositionInPhrase() - 1 + i);
