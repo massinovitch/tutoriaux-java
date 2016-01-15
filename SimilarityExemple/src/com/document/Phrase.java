@@ -50,23 +50,26 @@ public class Phrase {
 		MaxentTagger tagger = tagText.getMaxentTagger();
 		String phraseWithType = tagger.tagString(value); //exemple : value = "Paul is taller than John."; phraseWithType = "Paul/NNP is/VBZ taller/JJR than/IN John/NNP ./."
 		String[] motsWithType = phraseWithType.split(GeneralConstants.SEPARATEUR_ESPACE);
+		
 		for (int i = 0; i < motsWithType.length; i++) {
 			String[] motWithType = motsWithType[i].split(GeneralConstants.SEPARATEUR_SLASH);
-			POS pos = tagText.getTypeOfWord(motWithType[1]);
-			String base = null;
-			if ( pos != null) {
-				base = WordnetHelp.getBase(pos, motWithType[0]);				
+			if (motWithType.length > 1) {
+				POS pos = tagText.getTypeOfWord(motWithType[1]);
+				String base = null;
+				if ( pos != null) {
+					base = WordnetHelp.getBase(pos, motWithType[0]);				
+				}
+				Mot mot = new Mot();
+				mot.setValue(motWithType[0]);
+				mot.setBase(base);
+				mot.setType(pos);
+				PositionsInText positionInText = new PositionsInText();
+				positionInText.setPositionOfParagrapheWhichContainsWordInDocument(positionOfParagrapheWhichContainsWordInDocument);
+				positionInText.setPositionOfPhraseWhichContainsWordInParagrphe(positonInParagraph);
+				positionInText.setPositionInPhrase(i + 1);
+				mot.setPositionInText(positionInText);
+				listMots.add(mot);								
 			}
-			Mot mot = new Mot();
-			mot.setValue(motWithType[0]);
-			mot.setBase(base);
-			mot.setType(pos);
-			PositionsInText positionInText = new PositionsInText();
-			positionInText.setPositionOfParagrapheWhichContainsWordInDocument(positionOfParagrapheWhichContainsWordInDocument);
-			positionInText.setPositionOfPhraseWhichContainsWordInParagrphe(positonInParagraph);
-			positionInText.setPositionInPhrase(i + 1);
-			mot.setPositionInText(positionInText);
-			listMots.add(mot);				
 		}
 	}
 	

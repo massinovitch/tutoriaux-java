@@ -64,43 +64,56 @@ public class ConceptsInText {
 	}
 	
 	//renvoyer la distance minimum du voisin v
-	public DistanceConcept getDistanceMin(ConceptJwnl v) throws JWNLException {
+	public DistanceConcept getDistanceMin(ConceptJwnl v, int typeMethodEgaliteScore) throws JWNLException {
 		int conceptJwnlSize = getListConceptJwnl().size();//nombre d'element dans le concept à desambiquiser
-		DistanceConcept[] distanceBetweenConcepts = new DistanceConcept[conceptJwnlSize];//contient la distance entre chaque concept et le concept voisin gauche
+		DistanceConcept[] distanceBetweenConcepts = new DistanceConcept[conceptJwnlSize];//contient la distance entre chaque concept et le concept voisin v selectionné
 		for (int i = 0; i < conceptJwnlSize; i++ ) {//calculer la disantce entre chaque concept et le voisin selectionné
 			ConceptJwnl conceptJwnl = getListConceptJwnl().get(i);
 			float distance = WordnetHelp.getDistance(v, conceptJwnl);
+			System.out.println("				Le distance entre " + v.getTerme() + " " + v.getNumber() + " et " + conceptJwnl.getTerme() + " " + conceptJwnl.getNumber() + " est : " + distance);
 			DistanceConcept distanceConcept = new DistanceConcept();
 			distanceConcept.setIndex(i);
 			distanceConcept.setValue(distance);
 			distanceBetweenConcepts[i] = distanceConcept;							
 		}
-		DistanceConcept distanceMin = Commun.min(distanceBetweenConcepts);
+		DistanceConcept distanceMin = Commun.min(distanceBetweenConcepts, typeMethodEgaliteScore);
 		return distanceMin;
 	}
 	
-	public boolean keepMinConcept(ConceptJwnl conceptJwnlVg, ConceptJwnl conceptJwnlVd) throws JWNLException {
+	public boolean keepMinConcept(ConceptJwnl conceptJwnlVg, ConceptJwnl conceptJwnlVd, int typeMethodEgaliteScore) throws JWNLException {
 		boolean result = false;
 		DistanceConcept distanceConceptSelected = null;
 		if ( (conceptJwnlVg != null) && (conceptJwnlVd != null) ) {
-			DistanceConcept disanceVdConcept = getDistanceMin(conceptJwnlVd);
-			DistanceConcept disanceVgConcept = getDistanceMin(conceptJwnlVg);			
+			DistanceConcept disanceVdConcept = getDistanceMin(conceptJwnlVd, typeMethodEgaliteScore);
+			DistanceConcept disanceVgConcept = getDistanceMin(conceptJwnlVg, typeMethodEgaliteScore);			
 			if ( disanceVdConcept.getValue() < disanceVgConcept.getValue() ) {
+				System.out.println("				Le voisin qui a désambiguisé ce terme est de droite  : " + conceptJwnlVd.getNumber());
 				distanceConceptSelected = disanceVdConcept;
 				result = true;
 			} else if ( disanceVdConcept.getValue() > disanceVgConcept.getValue() ){
+				System.out.println("				Le voisin qui a désambiguisé ce terme est de gauche  : " + conceptJwnlVg.getNumber());
 				distanceConceptSelected = disanceVgConcept;
 				result = true;
+			} else if (disanceVgConcept.getValue() != 1.0){//les valeurs du voisin sont egals et différente de 1. selectionner un des deux
+				int indexConceptVd = disanceVdConcept.getIndex();
+				int indexConceptVg = disanceVgConcept.getIndex();
+				if (indexConceptVd == indexConceptVg) {//si l'egalité est sur le meme concept, le selectioner
+					System.out.println("				Le voisin qui a désambiguisé ce terme est de gauche  : " + conceptJwnlVg.getNumber());
+					distanceConceptSelected = disanceVgConcept;
+					result = true;					
+				}
 			}
 		} else if (conceptJwnlVg != null) {
-			distanceConceptSelected = getDistanceMin(conceptJwnlVg);
+			distanceConceptSelected = getDistanceMin(conceptJwnlVg, typeMethodEgaliteScore);
 			if ( distanceConceptSelected.getValue() != 1.0) {
 				result = true;
+				System.out.println("				Le voisin qui a désambiguisé ce terme de gauche  : " + conceptJwnlVg.getNumber());
 			}
 		} else if (conceptJwnlVd != null) {
-			distanceConceptSelected = getDistanceMin(conceptJwnlVd);
+			distanceConceptSelected = getDistanceMin(conceptJwnlVd, typeMethodEgaliteScore);
 			if ( distanceConceptSelected.getValue() != 1.0) {
 				result = true;
+				System.out.println("				Le voisin qui a désambiguisé ce terme est de droite  : " + conceptJwnlVd.getNumber());
 			}
 		}
 		if ( result ) {

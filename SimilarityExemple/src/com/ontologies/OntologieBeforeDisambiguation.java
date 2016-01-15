@@ -6,6 +6,7 @@ import java.util.List;
 import rita.wordnet.jwnl.JWNLException;
 import rita.wordnet.jwnl.wndata.POS;
 
+import com.document.Parameters;
 import com.document.PositionsInText;
 import com.properties.LevelSearch;
 
@@ -41,12 +42,12 @@ public class OntologieBeforeDisambiguation {
 	 * @param levelSearch : niveau de recherche (phrase, paragraphe, document)
 	 * @param typeMethod : type de methode recherche du voisin gauche
 	 */
-	public ConceptsInText findVg(int indexConceptsInText, int indexVoisin, String levelSearch, int typeMethod) {
+	public ConceptsInText findVg(int indexConceptsInText, Parameters parameters, String levelSearch, int typeMethod) {
 		ConceptsInText conceptsInText = listConcepts.get(indexConceptsInText);
 		PositionsInText postionConceptsInText = conceptsInText.getPositionInText();
 		POS typeConcept = conceptsInText.getType();
 		ConceptsInText vg = null;
-		int cptConceptsVoisins = indexVoisin;
+		int cptConceptsVoisins = parameters.getIndexVoising();
 		//si on dépasse le niveau levelSearch, et on trouve rien, on va sortir
 		if (typeConcept.equals(POS.NOUN)) {
 			if (typeMethod == 1) {
@@ -75,16 +76,17 @@ public class OntologieBeforeDisambiguation {
 				}
 			}			
 		}
+		parameters.setIndexVoising(cptConceptsVoisins);
 		return vg;
 	}
 	
 	//chercher voisin droite avec le niveau de recherche adéquat
-	public ConceptsInText findVd(int indexConceptsInText, int indexVoisin, String levelSearch, int typeMethod) {
+	public ConceptsInText findVd(int indexConceptsInText, Parameters parameters, String levelSearch, int typeMethod) {
 		ConceptsInText conceptsInText = listConcepts.get(indexConceptsInText);
 		PositionsInText postionConceptsInText = conceptsInText.getPositionInText();
 		POS typeConcept = conceptsInText.getType();
 		ConceptsInText vd = null;
-		int cptConceptsVoisins = indexVoisin;
+		int cptConceptsVoisins = parameters.getIndexVoisind();
 		//si on dépasse le niveau levelSearch, et on trouve rien, on va sortir
 		if (typeConcept.equals(POS.NOUN)) {
 			if (typeMethod == 1) {
@@ -113,28 +115,30 @@ public class OntologieBeforeDisambiguation {
 				}
 			}
 		}
+		parameters.setIndexVoisind(cptConceptsVoisins);
 		return vd;
 	}
 	
 	//desambiguiser l'élément qui se trouve à la position indexConceptsInText ( les termes sont insérés par ordre de leurs apparition dans la phrase dans listConcepts
-	public boolean filter(int indexConceptsInText, String levelSearch, int typeMethod) throws JWNLException {
+	public boolean filter(int indexConceptsInText, String levelSearch, int typeMethod, int typeMethodEgaliteScore) throws JWNLException {
 		ConceptsInText coneceptsInText = listConcepts.get(indexConceptsInText);
 		if ( coneceptsInText.isAmbigue() ) {
 			POS typeConcept = coneceptsInText.getType();
 			if ( typeConcept.equals(POS.NOUN) ) {
 				boolean trouv = false;
-				int indexVoising = indexConceptsInText;
-				int indexVoisind = indexConceptsInText;
+				Parameters parameters = new Parameters();
+				parameters.setIndexVoising(indexConceptsInText);
+				parameters.setIndexVoisind(indexConceptsInText);
 				while (!trouv) {
-					indexVoising--;
-					indexVoisind++;
-					ConceptsInText vg = findVg(indexConceptsInText, indexVoising, levelSearch, typeMethod);
-					ConceptsInText vd = findVd(indexConceptsInText, indexVoisind, levelSearch, typeMethod);
+					parameters.setIndexVoising(parameters.getIndexVoising() - 1);
+					parameters.setIndexVoisind(parameters.getIndexVoisind() + 1);
+					ConceptsInText vg = findVg(indexConceptsInText, parameters, levelSearch, typeMethod);
+					ConceptsInText vd = findVd(indexConceptsInText, parameters, levelSearch, typeMethod);
 					ConceptJwnl conceptJwnlVd = null;
 					ConceptJwnl conceptJwnlVg = null;
 					if ( (vg != null) && (vd != null) ) {
 						if ( (vg.isAmbigue()) && (vd.isAmbigue()) ) {
-							boolean isVdFilter = filter(indexVoisind, levelSearch, typeMethod);
+							boolean isVdFilter = filter(parameters.getIndexVoisind(), levelSearch, typeMethod, typeMethodEgaliteScore);
 							if ( isVdFilter ) {
 								//utiliser vd pour desambiguiser conceptsInText
 								conceptJwnlVd = vd.getListConceptJwnl().get(0);//premier element ( puisque cet element est desambiguiser, il doit contenir un seul concept jwnl)
@@ -159,7 +163,7 @@ public class OntologieBeforeDisambiguation {
 						if ( !vd.isAmbigue() ) {
 							conceptJwnlVd = vd.getListConceptJwnl().get(0);//premier element ( puisque cet element est desambiguiser, il doit contenir un seul concept jwnl)
 						} else {
-							boolean isVdFilter = filter(indexVoisind, levelSearch, typeMethod);
+							boolean isVdFilter = filter(parameters.getIndexVoisind(), levelSearch, typeMethod, typeMethodEgaliteScore);
 							if ( isVdFilter ) {
 								//utiliser vd pour desambiguiser conceptsInText
 								conceptJwnlVd = vd.getListConceptJwnl().get(0);//premier element ( puisque cet element est desambiguiser, il doit contenir un seul concept jwnl)
@@ -170,7 +174,7 @@ public class OntologieBeforeDisambiguation {
 					} else {//else , les deux voisins sont null, donc return false
 						return false;
 					}
-					trouv = coneceptsInText.keepMinConcept(conceptJwnlVg, conceptJwnlVd);				
+					trouv = coneceptsInText.keepMinConcept(conceptJwnlVg, conceptJwnlVd, typeMethodEgaliteScore);				
 				}
 			} else {
 				coneceptsInText.selectFirstConcept();

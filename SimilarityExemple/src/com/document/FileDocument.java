@@ -41,7 +41,7 @@ public class FileDocument {
 				}// si il y a d'autres lignes blanches, on les ignore
 			} else {
 				firstWhiteLine = true;//il suffit de la mettre à true une fois, mais bon, ce n'est pas une operation couteuse.
-				currentText.append(sCurrentLine);
+				currentText.append(sCurrentLine).append(" ");
 			}
 		}
 		String lastPhrase = currentText.toString();

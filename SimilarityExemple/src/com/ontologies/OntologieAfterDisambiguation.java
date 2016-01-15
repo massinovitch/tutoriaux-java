@@ -70,11 +70,7 @@ public class OntologieAfterDisambiguation {
 	    			int result;
     				int nbConceptInParagrapheForOtherConcept = getNbConceptInParagraphe(otherConceptNumber, i);
 	    			if (otherConceptNumber.equals(currentConceptNumber)) {//les deux concepts sont egaux, le poid est egal à 1 si le concept existe dans le paragraphe
-	    				if ( nbConceptInParagrapheForOtherConcept > 0 ) {
-		    				result = 1;	    					
-	    				} else {
-	    					result = 0;
-	    				}
+	    				result = 1;	    					
 	    			} else {
 		    			result = nbConceptInParagrapheForCurrentConcept * nbConceptInParagrapheForOtherConcept;//le resultat du poids entre le concept courant et l'autre concept par paragraphe	    				
 	    			}
@@ -82,7 +78,9 @@ public class OntologieAfterDisambiguation {
 	    			if ( mapResultConceptCourant != null ) {// la map a été déja créer
 	    				if (mapResultConceptCourant.get(otherConceptNumber) != null) {
 		    				int oldResult = mapResultConceptCourant.get(otherConceptNumber);
-		    				result += oldResult;	    					    					
+			    			if (!otherConceptNumber.equals(currentConceptNumber)) {//les deux concepts sont egaux, le poid est egal à 1 dans tout le document
+			    				result += oldResult;	    					    					
+			    			}
 	    				}
 	    			} else {
 	    				mapResultConceptCourant = new HashMap<String, Integer>();
@@ -146,5 +144,7 @@ public class OntologieAfterDisambiguation {
 		ConceptInText coneceptInText = listConcepts.get(indexConceptsInText);
 		ConceptJwnl conceptJwnl = coneceptInText.getConceptJwnl();
 		PositionsInText positionInText = coneceptInText.getPositionInText();
+		System.out.println("		Terme : \"" + conceptJwnl.getTerme() + "\" à la position, numero paragraphe : " + positionInText.getPositionOfParagrapheWhichContainsWordInDocument() + ", numero de phrase : " + positionInText.getPositionOfPhraseWhichContainsWordInParagrphe() + ", numéro terme dans phrase : " + positionInText.getPositionInPhrase());
+		System.out.println("			concept numéro : " + conceptJwnl.getNumber());
 	}	
 }

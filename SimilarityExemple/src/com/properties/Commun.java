@@ -16,7 +16,8 @@ public class Commun {
 	}
 	
 	//renvoyer la position et la valeur du min
-	public static DistanceConcept min(DistanceConcept[] array) {
+	public static DistanceConcept min(DistanceConcept[] array, int typeMethodEgaliteScore) {
+		int cptOccurenceMin = 1;//occurence 
 		// Validates input
 		if (array == null) {
 			throw new IllegalArgumentException("The Array must not be null");
@@ -28,7 +29,13 @@ public class Commun {
 		for (int i = 1; i < array.length; i++) {
 			if (array[i].getValue() < min.getValue()) {
 				min = array[i];
+				cptOccurenceMin = 1;
+			} else if (array[i].getValue() == min.getValue()) {
+				cptOccurenceMin++;
 			}
+		}
+		if (cptOccurenceMin > 1 && (typeMethodEgaliteScore == 1)) {
+			min.setValue(1);
 		}
 
 		return min;

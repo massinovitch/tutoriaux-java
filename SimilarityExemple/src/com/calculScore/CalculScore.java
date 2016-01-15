@@ -136,6 +136,8 @@ public class CalculScore {
 	public String getSynsets(String fileNameDocument, List<SynsetSimilarity> listConcepts) throws IOException, JWNLException, CloneNotSupportedException {	
 		int typeMethodDesambiguisation = 1;//désambiguiser les noms par calcul de distance     
 		int typeMethodCalculScore = 2;//par nom
+		int typeMethodEgaliteScore = 1;//Méthode de désambiguisation en cas d egalité de score	
+
 		FileWordnet fileWordnet = FileWordnet.getInstance();
 		FileDocument fileDocument = new FileDocument();
 
@@ -182,13 +184,13 @@ public class CalculScore {
 			List<ConceptsInText> listConceptsInText = value.getListConcepts();
 			while (principal.existeTermeAmbigueInOntologie(listConceptsInText)) {
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.filter(i, LevelSearch.PHRASE, typeMethodDesambiguisation);
+					value.filter(i, LevelSearch.PHRASE, typeMethodDesambiguisation, typeMethodEgaliteScore);
 				}
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.filter(i, LevelSearch.PARAGRAPHE, typeMethodDesambiguisation);
+					value.filter(i, LevelSearch.PARAGRAPHE, typeMethodDesambiguisation, typeMethodEgaliteScore);
 				}
 				for (int i = 0; i < listConceptsInText.size(); i++) {
-					value.filter(i, LevelSearch.DOCUMENT, typeMethodDesambiguisation);
+					value.filter(i, LevelSearch.DOCUMENT, typeMethodDesambiguisation, typeMethodEgaliteScore);
 				}
 				List<ConceptsInText> listConceptsAmbigue = principal.getListTermesAmbigue(listConceptsInText);
 				principal.desambiguisterListeTermesAmbigue(listConceptsAmbigue);
