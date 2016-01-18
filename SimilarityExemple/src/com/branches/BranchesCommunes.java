@@ -297,7 +297,8 @@ public class BranchesCommunes {
 		return Tfustrie;
 	}
 	
-	public void differente(List<SynsetSimilarity> Tfustrie, List<SynsetSimilarity> Branchedif, int brdif) {
+	public List<SynsetSimilarity> differente(List<SynsetSimilarity> Tfustrie) throws CloneNotSupportedException {
+		List<SynsetSimilarity> Branchedif = new ArrayList<SynsetSimilarity>();//nouvelle liste trie
 		int NTfustrie = Tfustrie.size();
 		int nb1;
 		boolean dup;
@@ -312,7 +313,7 @@ public class BranchesCommunes {
 			l = 0;
 			k = Branchedif.size();
 			while ( (l < k) && (!dup) ) {
-				SynsetSimilarity Tl = Tfustrie.get(l);
+				SynsetSimilarity Tl = Branchedif.get(l);
 				nb2 = Tl.getListNumeroBranche().size(); 
 				cpt = 0;
 				for (int ch1 = 0; ch1 < nb1; ch1++) {
@@ -328,8 +329,12 @@ public class BranchesCommunes {
 					dup = true;
 				}
 			}
+			if (!dup) {
+				SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
+				Branchedif.add(tClone);	
+			}
 		}
-		
+		return Branchedif;
 	}
 	
 	
