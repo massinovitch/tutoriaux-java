@@ -297,6 +297,7 @@ public class BranchesCommunes {
 		return Tfustrie;
 	}
 	
+	//déterminer les branches différentes de T1 et T2 creation du vecteur branchedif
 	public List<SynsetSimilarity> differente(List<SynsetSimilarity> Tfustrie) throws CloneNotSupportedException {
 		List<SynsetSimilarity> Branchedif = new ArrayList<SynsetSimilarity>();//nouvelle liste trie
 		int NTfustrie = Tfustrie.size();
