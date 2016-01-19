@@ -75,9 +75,9 @@ public class BranchesCommunes {
 		int k = 0;
 		boolean dup = false;
 		while ( i < N4T1 ) {
-			SynsetSimilarity Ti = T1trie.get(i);
-			int nb1 = Ti.getListNumeroBranche().size();
 			while ( j < N4T2 ) {
+				SynsetSimilarity Ti = T1trie.get(i);
+				int nb1 = Ti.getListNumeroBranche().size();
 				SynsetSimilarity Tj = T2trie.get(j);
 				int nb2 = Tj.getListNumeroBranche().size();
 				if ( nb1 < nb2 ) {
