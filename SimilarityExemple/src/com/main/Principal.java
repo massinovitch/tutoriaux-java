@@ -9,6 +9,7 @@ import org.jdom.JDOMException;
 import rita.wordnet.jwnl.JWNLException;
 
 import com.arbre.LireArbreXML;
+import com.branches.BranchesCommunes;
 import com.calculScore.CalculScore;
 import com.jwnl.WordnetHelp;
 import com.properties.Commun;
@@ -23,6 +24,7 @@ public class Principal {
         int T1init, T2init; //N, M, N2T1, N2T2, N3T1, N3T2, N4T1, N4T2;
 		CalculScore calculScore = CalculScore.getInstance();
 		Similarity similarity = Similarity.getInstance();
+		BranchesCommunes branchesCommunes = BranchesCommunes.getInstance();
 		String fileNameArbreXml = Constants.getInstance().getProperty("fileName.arbreXml");
 		LireArbreXML lireArbreXML = new LireArbreXML(fileNameArbreXml);
 		String fileNameDocument1 = Constants.getInstance().getProperty("fileName.document1");//le document qui va etre lu et traité par notre algo
@@ -71,9 +73,22 @@ public class Principal {
 		lireArbreXML.brancheSyn(T1);
 		System.out.println("brancheSyn T2");
 		lireArbreXML.brancheSyn(T2);
-		float f = similarity.similarite(T1, T2, ontologie);
-		System.out.println("similarite : " + f);
-
+		float sim = similarity.similarite(T1, T2, ontologie);
+		System.out.println("similarite : " + sim);
+		System.out.println("Tri T1");
+		List<SynsetSimilarity> T1trie = branchesCommunes.Tri(T1);
+		System.out.println("Tri T2");
+		List<SynsetSimilarity> T2trie = branchesCommunes.Tri(T2);
+		System.out.println("branchefusion");
+		List<SynsetSimilarity> Tfustrie = branchesCommunes.branchefusion(T1trie, T2trie);
+		System.out.println("differente");
+		List<SynsetSimilarity> branchedif = branchesCommunes.differente(Tfustrie);
+		int brdif = branchedif.size();
+		System.out.println("brcommune");
+		int brcom = branchesCommunes.brcommune(T1trie, T2trie, branchedif);
+		System.out.println("calcul");
+		float simbr = branchesCommunes.calcul(sim, brcom, brdif);
+		System.out.println("similarite branches : " + simbr);
 	}
 
 }

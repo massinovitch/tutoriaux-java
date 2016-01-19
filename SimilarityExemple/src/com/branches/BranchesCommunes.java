@@ -338,5 +338,64 @@ public class BranchesCommunes {
 		return Branchedif;
 	}
 	
+	public int brcommune(List<SynsetSimilarity> T1trie, List<SynsetSimilarity> T2trie, List<SynsetSimilarity> branchedif) throws CloneNotSupportedException {
+		int brcom = 0, cpt = 0, nb1, nb2, i, N4T1 = T1trie.size(), N4T2 = T2trie.size();
+		boolean trouv1, trouv2;
+		for (int k = 0; k < branchedif.size(); k++) {
+			SynsetSimilarity Tk = branchedif.get(k);
+			nb2 = Tk.getListNumeroBranche().size();
+			trouv1 = false;
+			i = 0;
+			while ( (i < N4T1) && (!trouv1)) {
+				SynsetSimilarity Ti = T1trie.get(i);
+				nb1 = Ti.getListNumeroBranche().size();
+				for (int ch1 = 0; ch1 < nb1; ch1++) {
+					for (int ch2 = 0; ch2 <= nb2; ch2++) {
+						String brx = Ti.getListNumeroBranche().get(ch1);
+						String bry = Tk.getListNumeroBranche().get(ch2);		
+						if (brx.equals(bry)) {
+							cpt++;
+						}						
+					}
+				}
+				if ( cpt == nb2 ) {
+					trouv1 = true;
+				}
+			}
+			trouv2 = false;
+			if (trouv1) {
+				i = 0;
+				while ( (i < N4T2) && (!trouv2)) {
+					SynsetSimilarity Ti = T2trie.get(i);
+					nb1 = Ti.getListNumeroBranche().size();
+					for (int ch1 = 0; ch1 < nb1; ch1++) {
+						for (int ch2 = 0; ch2 <= nb2; ch2++) {
+							String brx = Ti.getListNumeroBranche().get(ch1);
+							String bry = Tk.getListNumeroBranche().get(ch2);		
+							if (brx.equals(bry)) {
+								cpt++;
+							}						
+						}
+					}
+					if ( cpt == nb2 ) {
+						trouv2 = true;
+					}
+				}
+				
+			}
+			if ( trouv2 ) {
+				brcom++;
+			}
+		}
+		return brcom;
+		
+	}
+	
+	public float calcul(float sim, int brcom, int brdif) {
+		float rap = (float) brcom / brdif;
+		float simbr = (float) rap * sim;
+		return simbr;
+	}
+	
 	
 }
