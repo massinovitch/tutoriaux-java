@@ -336,6 +336,7 @@ public class BranchesCommunes {
 				Branchedif.add(tClone);	
 			}
 		}
+		System.out.println("	Brdif : " + Branchedif.size());
 		return Branchedif;
 	}
 	
@@ -390,12 +391,13 @@ public class BranchesCommunes {
 				brcom++;
 			}
 		}
+		System.out.println("	brcom : " + brcom);
 		return brcom;
-		
 	}
 	
 	public float calcul(float sim, int brcom, int brdif) {
 		float rap = (float) brcom / brdif;
+		System.out.println("	rap : " + rap);
 		float simbr = (float) rap * sim;
 		return simbr;
 	}

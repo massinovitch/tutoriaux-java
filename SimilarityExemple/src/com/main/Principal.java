@@ -88,7 +88,7 @@ public class Principal {
 		int brcom = branchesCommunes.brcommune(T1trie, T2trie, branchedif);
 		System.out.println("calcul");
 		float simbr = branchesCommunes.calcul(sim, brcom, brdif);
-		System.out.println("similarite branches : " + simbr);
+		System.out.println("	similarite branches : " + simbr);
 	}
 
 }
