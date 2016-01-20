@@ -106,8 +106,8 @@ public class BranchesCommunes {
 							if (cpt == nb1) {
 								dup = true;
 							}
-							l++;
 						}
+						l++;
 					}
 					if ( !dup ) {
 						SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
@@ -140,8 +140,8 @@ public class BranchesCommunes {
 							if (cpt == nb2) {
 								dup = true;
 							}
-							l++;
 						}
+						l++;
 					}
 					if ( !dup ) {
 						SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
@@ -174,8 +174,8 @@ public class BranchesCommunes {
 							if (cpt == nb1) {
 								dup = true;
 							}
-							l++;
 						}
+						l++;
 					}
 					if ( !dup ) {
 						SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
@@ -208,8 +208,8 @@ public class BranchesCommunes {
 							if (cpt == nb2) {
 								dup = true;
 							}
-							l++;
 						}
+						l++;
 					}
 					if ( !dup ) {
 						SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
@@ -248,8 +248,8 @@ public class BranchesCommunes {
 					if (cpt == nb1) {
 						dup = true;
 					}
-					l++;
 				}
+				l++;
 			}
 			if ( !dup ) {
 				SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
@@ -285,8 +285,8 @@ public class BranchesCommunes {
 					if (cpt == nb2) {
 						dup = true;
 					}
-					l++;
 				}
+				l++;
 			}
 			if ( !dup ) {
 				SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
@@ -329,6 +329,7 @@ public class BranchesCommunes {
 				if ( cpt == nb2 ) {
 					dup = true;
 				}
+				l++;
 			}
 			if (!dup) {
 				SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
@@ -350,7 +351,7 @@ public class BranchesCommunes {
 				SynsetSimilarity Ti = T1trie.get(i);
 				nb1 = Ti.getListNumeroBranche().size();
 				for (int ch1 = 0; ch1 < nb1; ch1++) {
-					for (int ch2 = 0; ch2 <= nb2; ch2++) {
+					for (int ch2 = 0; ch2 < nb2; ch2++) {
 						String brx = Ti.getListNumeroBranche().get(ch1);
 						String bry = Tk.getListNumeroBranche().get(ch2);		
 						if (brx.equals(bry)) {
@@ -369,7 +370,7 @@ public class BranchesCommunes {
 					SynsetSimilarity Ti = T2trie.get(i);
 					nb1 = Ti.getListNumeroBranche().size();
 					for (int ch1 = 0; ch1 < nb1; ch1++) {
-						for (int ch2 = 0; ch2 <= nb2; ch2++) {
+						for (int ch2 = 0; ch2 < nb2; ch2++) {
 							String brx = Ti.getListNumeroBranche().get(ch1);
 							String bry = Tk.getListNumeroBranche().get(ch2);		
 							if (brx.equals(bry)) {
