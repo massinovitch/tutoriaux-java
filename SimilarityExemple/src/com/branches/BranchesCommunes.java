@@ -362,6 +362,7 @@ public class BranchesCommunes {
 				if ( cpt == nb2 ) {
 					trouv1 = true;
 				}
+				i++;
 			}
 			trouv2 = false;
 			if (trouv1) {
@@ -381,6 +382,7 @@ public class BranchesCommunes {
 					if ( cpt == nb2 ) {
 						trouv2 = true;
 					}
+					i++;
 				}
 				
 			}
