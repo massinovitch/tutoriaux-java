@@ -61,7 +61,9 @@ public class SynsetSimilarity implements Cloneable {
 	  }	
     
 	@Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public SynsetSimilarity clone() throws CloneNotSupportedException {
+		SynsetSimilarity clonedObject = (SynsetSimilarity) super.clone();
+		clonedObject.listNumeroBranche = ((List) ((ArrayList) listNumeroBranche).clone());
+        return clonedObject;
     }	
 }
