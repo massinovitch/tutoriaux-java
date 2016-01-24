@@ -345,12 +345,14 @@ public class BranchesCommunes {
 		boolean trouv1, trouv2;
 		for (int k = 0; k < branchedif.size(); k++) {
 			SynsetSimilarity Tk = branchedif.get(k);
+
 			nb2 = Tk.getListNumeroBranche().size();
 			trouv1 = false;
 			i = 0;
 			while ( (i < N4T1) && (!trouv1)) {
 				SynsetSimilarity Ti = T1trie.get(i);
 				nb1 = Ti.getListNumeroBranche().size();
+				cpt = 0;
 				for (int ch1 = 0; ch1 < nb1; ch1++) {
 					for (int ch2 = 0; ch2 < nb2; ch2++) {
 						String brx = Ti.getListNumeroBranche().get(ch1);
@@ -371,6 +373,7 @@ public class BranchesCommunes {
 				while ( (i < N4T2) && (!trouv2)) {
 					SynsetSimilarity Ti = T2trie.get(i);
 					nb1 = Ti.getListNumeroBranche().size();
+					cpt = 0;
 					for (int ch1 = 0; ch1 < nb1; ch1++) {
 						for (int ch2 = 0; ch2 < nb2; ch2++) {
 							String brx = Ti.getListNumeroBranche().get(ch1);

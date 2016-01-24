@@ -111,7 +111,7 @@ public class Similarity {
 	}
 	
 	//enrichissement de Tj en fonction de Ti
-	public void enrichD_ancetre(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) throws JWNLException {
+	public void enrichD_ancetre(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) throws JWNLException, CloneNotSupportedException {
 		int lengthTj = Tj.size();
 		ParameterReference parRef = new ParameterReference();
 		for (int j = 0; j < lengthTj; j++) {	 
@@ -122,7 +122,8 @@ public class Similarity {
 					if (ancetre(x, y, parRef)) {
 						if (!Tj.contains(y)) {
 							System.out.println("               synset : " + y.getNumero() + ", " + y.getNom());	 
-							Tj.add(y);
+							SynsetSimilarity c = (SynsetSimilarity) y.clone();
+							Tj.add(c);
 						}
 					}
 				}
@@ -131,7 +132,7 @@ public class Similarity {
 	}
 	
 	//Enrichissement de Di en rajoutant les parents communs a ses synsets
-	public void parComDi(List<SynsetSimilarity> Ti) throws JWNLException {
+	public void parComDi(List<SynsetSimilarity> Ti) throws JWNLException, CloneNotSupportedException {
 		int lengthTi = Ti.size();
 		for (int i = 0; i < lengthTi - 1; i++) {
 			SynsetSimilarity s1 = Ti.get(i);
@@ -140,8 +141,9 @@ public class Similarity {
 				SynsetSimilarity pc = WordnetHelp.getCommonParent(s1, s2);
 				if (pc != null) {
 					if (!Ti.contains(pc)) {
-						System.out.println("               synset : " + pc.getNumero() + ", " + pc.getNom());	 
-						Ti.add(pc);
+						System.out.println("               synset : " + pc.getNumero() + ", " + pc.getNom());	
+						SynsetSimilarity c = (SynsetSimilarity) pc.clone();
+						Ti.add(c);
 					}
 				}
 
@@ -150,7 +152,7 @@ public class Similarity {
 	}
 	
 	//Enrichissement de D1 et D2 en rajoutant les parents communs à D1 et D2
-	public void parComD(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) throws JWNLException {
+	public void parComD(List<SynsetSimilarity> Ti, List<SynsetSimilarity> Tj) throws JWNLException, CloneNotSupportedException {
 		int lengthTi = Ti.size();
 		int lengthTj = Tj.size();
 		for (int i = 0; i < lengthTi ; i++) {
@@ -160,12 +162,14 @@ public class Similarity {
 				SynsetSimilarity pc = WordnetHelp.getCommonParent(s1, s2);
 				if (pc != null) {
 					if (!Ti.contains(pc)) {
-						System.out.println("               synset add T1 : " + pc.getNumero() + ", " + pc.getNom());	 
-						Ti.add(pc);
+						System.out.println("               synset add T1 : " + pc.getNumero() + ", " + pc.getNom());	
+						SynsetSimilarity c = (SynsetSimilarity) pc.clone();
+						Ti.add(c);
 					}
 					if (!Tj.contains(pc)) {
-						System.out.println("               synset T2 : " + pc.getNumero() + ", " + pc.getNom());	 
-						Tj.add(pc);
+						System.out.println("               synset T2 : " + pc.getNumero() + ", " + pc.getNom());
+						SynsetSimilarity c = (SynsetSimilarity) pc.clone();
+						Tj.add(c);
 					}
 				}
 			}

@@ -29,7 +29,7 @@ public class LireArbreXML {
     
     private void updateBrancheSynset(SynsetSimilarity s) throws JDOMException {
     	 String numero = s.getNumero().split(GeneralConstants.SEPARATEUR_TIRET)[0];
-    	 XPath xpa = XPath.newInstance("//noeud[@synset='" + numero + "']");
+    	 XPath xpa = XPath.newInstance(".//noeud[@synset='" + numero + "']");
          /* On récupère tous les noeuds répondant au chemin //patient */
          List results = xpa.selectNodes(root) ;
          Iterator iter = results.iterator() ;
@@ -45,7 +45,7 @@ public class LireArbreXML {
     	for (int i = 0; i < Ti.size(); i++) {
     		SynsetSimilarity s = Ti.get(i);
     		System.out.println("		branches du synset : " + s.getNumero() + " " + s.getNom());	
-    		updateBrancheSynset(s);
+    		updateBrancheSynset(s); 		
     	}
     }
 }
