@@ -74,150 +74,148 @@ public class BranchesCommunes {
 		int l = 0;
 		int k = 0;
 		boolean dup = false;
-		while ( i < N4T1 ) {
-			while ( j < N4T2 ) {
-				SynsetSimilarity Ti = T1trie.get(i);
-				int nb1 = Ti.getListNumeroBranche().size();
-				SynsetSimilarity Tj = T2trie.get(j);
-				int nb2 = Tj.getListNumeroBranche().size();
-				if ( nb1 < nb2 ) {
-					dup = false;
-					cpt = 0;
-					l = 0;
-					k = Tfustrie.size();
-					while ( (l < k) && (!dup) ) {
-						SynsetSimilarity Tl = Tfustrie.get(l);
-						int nb3 = Tl.getListNumeroBranche().size();	
-						if ( nb1 == nb3 ) {
-							for (int x = 0; x < nb1; x++) {
-								int y = 0;
-								boolean trouv = false;
-								while ( (y < nb3) && (!trouv) ) {
-									String brx = Ti.getListNumeroBranche().get(x);
-									String bry = Tl.getListNumeroBranche().get(y);
-									if (brx.equals(bry)) {
-										cpt++;
-										trouv = true;
-									} else {
-										y++;
-									}
+		while ( i < N4T1 && j < N4T2) {
+			SynsetSimilarity Ti = T1trie.get(i);
+			int nb1 = Ti.getListNumeroBranche().size();
+			SynsetSimilarity Tj = T2trie.get(j);
+			int nb2 = Tj.getListNumeroBranche().size();
+			if ( nb1 < nb2 ) {
+				dup = false;
+				cpt = 0;
+				l = 0;
+				k = Tfustrie.size();
+				while ( (l < k) && (!dup) ) {
+					SynsetSimilarity Tl = Tfustrie.get(l);
+					int nb3 = Tl.getListNumeroBranche().size();	
+					if ( nb1 == nb3 ) {
+						for (int x = 0; x < nb1; x++) {
+							int y = 0;
+							boolean trouv = false;
+							while ( (y < nb3) && (!trouv) ) {
+								String brx = Ti.getListNumeroBranche().get(x);
+								String bry = Tl.getListNumeroBranche().get(y);
+								if (brx.equals(bry)) {
+									cpt++;
+									trouv = true;
+								} else {
+									y++;
 								}
 							}
-							if (cpt == nb1) {
-								dup = true;
-							}
 						}
-						l++;
-					}
-					if ( !dup ) {
-						SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
-						Tfustrie.add(tClone);	
-					}
-					i++;
-				} else if (nb1 > nb2) {
-					dup = false;
-					cpt = 0;
-					l = 0;
-					k = Tfustrie.size();
-					while ( (l < k) && (!dup) ) {
-						SynsetSimilarity Tl = Tfustrie.get(l);
-						int nb3 = Tl.getListNumeroBranche().size();	
-						if ( nb2 == nb3 ) {
-							for (int x = 0; x < nb2; x++) {
-								int y = 0;
-								boolean trouv = false;
-								while ( (y < nb3) && (!trouv) ) {
-									String brx = Tj.getListNumeroBranche().get(x);
-									String bry = Tl.getListNumeroBranche().get(y);
-									if (brx.equals(bry)) {
-										cpt++;
-										trouv = true;
-									} else {
-										y++;
-									}
-								}
-							}
-							if (cpt == nb2) {
-								dup = true;
-							}
+						if (cpt == nb1) {
+							dup = true;
 						}
-						l++;
 					}
-					if ( !dup ) {
-						SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
-						Tfustrie.add(tClone);	
-					}
-					j++;					
-				} else { //nb1==nb2
-					dup = false;
-					cpt = 0;
-					l = 0;
-					k = Tfustrie.size();
-					while ( (l < k) && (!dup) ) {
-						SynsetSimilarity Tl = Tfustrie.get(l);
-						int nb3 = Tl.getListNumeroBranche().size();	
-						if ( nb1 == nb3 ) {
-							for (int x = 0; x < nb1; x++) {
-								int y = 0;
-								boolean trouv = false;
-								while ( (y < nb3) && (!trouv) ) {
-									String brx = Ti.getListNumeroBranche().get(x);
-									String bry = Tl.getListNumeroBranche().get(y);
-									if (brx.equals(bry)) {
-										cpt++;
-										trouv = true;
-									} else {
-										y++;
-									}
-								}
-							}
-							if (cpt == nb1) {
-								dup = true;
-							}
-						}
-						l++;
-					}
-					if ( !dup ) {
-						SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
-						Tfustrie.add(tClone);	
-					}
-					i++;
-					
-					dup = false;
-					cpt = 0;
-					l = 0;
-					k = Tfustrie.size();
-					while ( (l < k) && (!dup) ) {
-						SynsetSimilarity Tl = Tfustrie.get(l);
-						int nb3 = Tl.getListNumeroBranche().size();	
-						if ( nb2 == nb3 ) {
-							for (int x = 0; x < nb2; x++) {
-								int y = 0;
-								boolean trouv = false;
-								while ( (y < nb3) && (!trouv) ) {
-									String brx = Tj.getListNumeroBranche().get(x);
-									String bry = Tl.getListNumeroBranche().get(y);
-									if (brx.equals(bry)) {
-										cpt++;
-										trouv = true;
-									} else {
-										y++;
-									}
-								}
-							}
-							if (cpt == nb2) {
-								dup = true;
-							}
-						}
-						l++;
-					}
-					if ( !dup ) {
-						SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
-						Tfustrie.add(tClone);	
-					}
-					j++;					
+					l++;
 				}
-			}			
+				if ( !dup ) {
+					SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
+					Tfustrie.add(tClone);	
+				}
+				i++;
+			} else if (nb1 > nb2) {
+				dup = false;
+				cpt = 0;
+				l = 0;
+				k = Tfustrie.size();
+				while ( (l < k) && (!dup) ) {
+					SynsetSimilarity Tl = Tfustrie.get(l);
+					int nb3 = Tl.getListNumeroBranche().size();	
+					if ( nb2 == nb3 ) {
+						for (int x = 0; x < nb2; x++) {
+							int y = 0;
+							boolean trouv = false;
+							while ( (y < nb3) && (!trouv) ) {
+								String brx = Tj.getListNumeroBranche().get(x);
+								String bry = Tl.getListNumeroBranche().get(y);
+								if (brx.equals(bry)) {
+									cpt++;
+									trouv = true;
+								} else {
+									y++;
+								}
+							}
+						}
+						if (cpt == nb2) {
+							dup = true;
+						}
+					}
+					l++;
+				}
+				if ( !dup ) {
+					SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
+					Tfustrie.add(tClone);	
+				}
+				j++;					
+			} else { //nb1==nb2
+				dup = false;
+				cpt = 0;
+				l = 0;
+				k = Tfustrie.size();
+				while ( (l < k) && (!dup) ) {
+					SynsetSimilarity Tl = Tfustrie.get(l);
+					int nb3 = Tl.getListNumeroBranche().size();	
+					if ( nb1 == nb3 ) {
+						for (int x = 0; x < nb1; x++) {
+							int y = 0;
+							boolean trouv = false;
+							while ( (y < nb3) && (!trouv) ) {
+								String brx = Ti.getListNumeroBranche().get(x);
+								String bry = Tl.getListNumeroBranche().get(y);
+								if (brx.equals(bry)) {
+									cpt++;
+									trouv = true;
+								} else {
+									y++;
+								}
+							}
+						}
+						if (cpt == nb1) {
+							dup = true;
+						}
+					}
+					l++;
+				}
+				if ( !dup ) {
+					SynsetSimilarity tClone = (SynsetSimilarity) Ti.clone();
+					Tfustrie.add(tClone);	
+				}
+				i++;
+				
+				dup = false;
+				cpt = 0;
+				l = 0;
+				k = Tfustrie.size();
+				while ( (l < k) && (!dup) ) {
+					SynsetSimilarity Tl = Tfustrie.get(l);
+					int nb3 = Tl.getListNumeroBranche().size();	
+					if ( nb2 == nb3 ) {
+						for (int x = 0; x < nb2; x++) {
+							int y = 0;
+							boolean trouv = false;
+							while ( (y < nb3) && (!trouv) ) {
+								String brx = Tj.getListNumeroBranche().get(x);
+								String bry = Tl.getListNumeroBranche().get(y);
+								if (brx.equals(bry)) {
+									cpt++;
+									trouv = true;
+								} else {
+									y++;
+								}
+							}
+						}
+						if (cpt == nb2) {
+							dup = true;
+						}
+					}
+					l++;
+				}
+				if ( !dup ) {
+					SynsetSimilarity tClone = (SynsetSimilarity) Tj.clone();
+					Tfustrie.add(tClone);	
+				}
+				j++;					
+			}		
 		}
 		
 		while ( i < N4T1 ) {
