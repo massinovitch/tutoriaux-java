@@ -204,7 +204,7 @@ public class FileWordnet {
 			String[] lineOfConcepts = sCurrentLine.split(GeneralConstants.SEPARATEUR_ESPACE); 
 			String typeOfTerme = lineOfConcepts[1];//v : verb, r : adverb, a : adjectif
 			int numberOfConcepts = Integer.valueOf(lineOfConcepts[2]) ;//identifiant du concept auquels appartient le terme
-			for (int i = lineOfConcepts.length - 1; i >= lineOfConcepts.length - numberOfConcepts; i-- ) {
+			for (int i = lineOfConcepts.length - numberOfConcepts; i <= lineOfConcepts.length - 1; i++) {
 				String identifiantOfConcept = lineOfConcepts[i] + GeneralConstants.SEPARATEUR_TIRET + typeOfTerme;
 				String nameOntologie = mapDomaineNames.get(identifiantOfConcept);
 				if ( nameOntologie != null ) {//si != null, ça veut que ce concept appartient à une ontologie qui est présentes dans les ontologies à tester
