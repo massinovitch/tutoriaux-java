@@ -1,1 +1,0 @@
-I created text mining. It has machine learning.
